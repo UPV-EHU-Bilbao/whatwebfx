@@ -1,0 +1,114 @@
+.button
+{
+    -fx-background-color : #3F2B63;
+}
+.button:hover
+{
+    -fx-background-color : #2A1C42 ;
+}
+.button:pressed
+{
+    -fx-background-color : #73A3EF ;
+}
+.button:focused
+{
+    -fx-background-color: #7156DD;
+    -fx-border-color: #CDD1D6;
+    -fx-border-width: 0px 0px 0px 3 px;
+}
+
+/*.date-picker .text-field {*/
+/*    -fx-control-inner-background: white ;*/
+/*}*/
+
+.date-picker > .text-field {
+    -fx-background-color: white;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 2 0 0 2;
+}
+
+/*.date-picker:focused > .text-field,*/
+/*.date-picker > .text-field:focused {*/
+/*    -fx-background-color: white;*/
+/*    -fx-background-insets: 0 0 0 0, 0 0 0 0 , 0 0 0 0;*/
+/*    -fx-background-radius: 2 0 0 2, 1 0 0 1, 0;*/
+/*}*/
+
+/*.date-picker > .arrow-button {*/
+/*    -fx-padding: 0px;*/
+/*}*/
+
+/*.date-picker > .arrow-button > .arrow {*/
+/*    -fx-padding: 0px;*/
+/*}*/
+/*.date-picker > .date-picker-display-node {*/
+/*    -fx-background-insets: 1 1 1 1;*/
+/*}*/
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size : 20;
+    -fx-background-color:  #7156DD;
+}
+.table-view .column-header .label{
+
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+    -fx-cell-size: 30;
+    -fx-alignment: center-left;
+    -fx-text-fill: #000000;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell:selected {
+    -fx-background-color:  rgb(127, 172, 243);
+}
+.table-row-cell:selected .text {
+    -fx-fill : white ;
+
+}
+/* scroll bar starts here */
+
+/* The increment and decrement button CSS class of scrollbar */
+.table-view .increment-button ,.table-view .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 2em;
+
+}
+
+/* The main scrollbar **track** CSS class  */
+.table-view .scroll-bar:horizontal .track,
+.table-view .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color:derive(  #2D75E8,80%);
+    -fx-background-radius: 2em;
+    -fx-border-radius:2em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color:derive( #2D75E8,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+
+}
+
+/* chart properties */
+
+.chart {
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+    -fx-legend-visible: false;
+}
+.chart-plot-background {
+    -fx-background-color:transparent;
+}
+
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color, 1%);
+    -fx-border-width: 0px;
+}
