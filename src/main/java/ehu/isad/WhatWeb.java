@@ -5,7 +5,7 @@ package ehu.isad;
 
 public class WhatWeb {
     public String getGreeting() {
-        return "Hello world.";
+        return "Jorge kalera";
     }
 
     public static void main(String[] args) {
