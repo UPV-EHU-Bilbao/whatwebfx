@@ -4,11 +4,11 @@
 }
 .button:hover
 {
-    -fx-background-color : #2A1C42 ;
+    -fx-background-color : #2A1C42;
 }
 .button:pressed
 {
-    -fx-background-color : #73A3EF ;
+    -fx-background-color : #7156DD;
 }
 .button:focused
 {

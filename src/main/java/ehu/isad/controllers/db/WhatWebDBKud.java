@@ -1,4 +1,4 @@
-package ehu.isad.controller.db;
+package ehu.isad.controllers.db;
 
 public class WhatWebDBKud {
 

@@ -1,4 +1,4 @@
-package ehu.isad.controller.db;
+package ehu.isad.controllers.db;
 
 import ehu.isad.utils.Propietateak;
 
