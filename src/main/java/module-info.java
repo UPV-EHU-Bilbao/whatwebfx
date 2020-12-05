@@ -4,5 +4,6 @@ open module scenebuilder {
     requires javafx.fxml;
 
     requires de.jensd.fx.fontawesomefx.fontawesome;
+    requires java.sql;
     exports ehu.isad;
 }
