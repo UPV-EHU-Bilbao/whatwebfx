@@ -11,9 +11,11 @@ public class CMSDBKud {
         return instantzia;
     }
 }
+
+
     //CMS bat pasatuz parametro gisa, eskaneatutako url-en artean zenbat (int) url duten cms hori.
     public int lortuCMSKopurua (String cms) {
-        String query = ;
+        String query = "select count (*) from Whatweb where Whatweb.cms = '"+cms+"'";;
         DBKud dbkudeatzaile = DBKud.getInstantzia();
         ResultSet rs = dbkudeatzaile.execSQL(query);
         int zenbakia=0;
@@ -26,12 +28,13 @@ public class CMSDBKud {
         }
         return zenbakia;
     }
+
+
     //Metodo honek, cms hori duten url-ak agertuko dira pantailan.
     public String  lortuCMSURL (String cms) {
-        String query = ;
+        String query = "select * from Whatweb where Whatweb.cms = '"+cms+"'";
         DBKud dbkudeatzaile = DBKud.getInstantzia();
         ResultSet rs = dbkudeatzaile.execSQL(query);
-
         try {
             while (rs.next()) {
 
@@ -39,52 +42,56 @@ public class CMSDBKud {
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-        return zenbakia;
     }
+
 
     // Metodo honek, URL bat pasatuz zer cms erabiltzen duen bueltatuko du.
     public String  URLlortuCMS (String URL) {
-        String query = ;
+        String query = "select cms from Whatweb where Whatweb.url = '"+URL+"'";
         DBKud dbkudeatzaile = DBKud.getInstantzia();
         ResultSet rs = dbkudeatzaile.execSQL(query);
-
+        String cms = "";
         try {
             while (rs.next()) {
-
+                cms=rs.getString("cms");
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-        return zenbakia;
+        return cms;
     }
+
+
     //Metodo honek, URL bat emanda zer cms bertsio duen bueltatuko du.
     public String  lortuCMSBertsioa (String URL) {
-        String query = ;
+        String query = "select bertsioa from Whatweb where Whatweb.url = '"+URL+"'";;
         DBKud dbkudeatzaile = DBKud.getInstantzia();
         ResultSet rs = dbkudeatzaile.execSQL(query);
-
+        String bertsioa = "";
         try {
             while (rs.next()) {
-
+            bertsioa=rs.getString("bertsioa");
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-        return zenbakia;
+        return bertsioa;
     }
+
+
     //Metodo honek, URL bat emanda, azkenengo aldiz eguneratu (Last updated) den data bueltatuko du.
-    public String  URLlortuCMS (String URL) {
-        String query = ;
+    public String  lortuURLData (String URL) {
+        String query = "select lastupdated from Whatweb where Whatweb.url = '"+URL+"'";;
         DBKud dbkudeatzaile = DBKud.getInstantzia();
         ResultSet rs = dbkudeatzaile.execSQL(query);
-
+        String lastupdated = "";
         try {
             while (rs.next()) {
-
+                lastupdated=rs.getString("lastupdated");
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-        return zenbakia;
+        return lastupdated;
     }
 }

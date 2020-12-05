@@ -10,7 +10,7 @@ public class DBKud {
     private static final DBKud nDBKud = new DBKud();
     Connection conn = null;
 
-    public static DBKud getDBKud() {
+    public static DBKud getInstantzia(){
         return nDBKud;
     }
 
