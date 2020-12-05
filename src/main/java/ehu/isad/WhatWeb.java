@@ -6,16 +6,12 @@ package ehu.isad;
 import ehu.isad.controllers.ui.MainKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-
-import static javafx.application.Application.launch;
 
 public class WhatWeb extends Application {
 
@@ -24,6 +20,7 @@ public class WhatWeb extends Application {
     private Stage stage;
 
     private MainKud mainKud;
+
     public static void main(String[] args) {
         launch();
     }
