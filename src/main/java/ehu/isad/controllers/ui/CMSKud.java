@@ -8,5 +8,11 @@ public class CMSKud {
         return nCMSKud;
     }
 
-    private CMSKud() {}
+    private CMSKud() {
+
+    }
+
+    public int zenbatURL (String CMS){
+
+    }
 }
