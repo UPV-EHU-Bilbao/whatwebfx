@@ -3,12 +3,51 @@
  */
 package ehu.isad;
 
-public class WhatWeb {
-    public String getGreeting() {
-        return "Jorge kalera";
+import ehu.isad.controllers.ui.MainKud;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
+
+import static javafx.application.Application.launch;
+
+public class WhatWeb extends Application {
+
+    private Parent mainUI;
+
+    private Stage stage;
+
+    private MainKud mainKud;
+    public static void main(String[] args) {
+        launch();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new WhatWeb().getGreeting());
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        this.mainErakutsi();
+    }
+
+    private void mainErakutsi() throws IOException {
+        this.pantailakKargatu();
+        stage.setScene(new Scene(mainUI, 1000, 600));
+        stage.show();
+    }
+
+    private void pantailakKargatu() throws IOException {
+        FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/Main.fxml"));
+        mainUI = (Parent) loaderMain.load();
+        mainKud = loaderMain.getController();
+        mainKud.setMainApp(this);
+
+        //TODO Beste pantailak gehitzea falta da (goiko 4 lerro bezalakoak pantaila bakoitzerako, izenak aldatuz eta aldagaiak sortuz)
     }
 }

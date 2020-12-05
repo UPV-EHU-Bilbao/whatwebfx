@@ -22,6 +22,9 @@ repositories {
     jcenter()
 }
 
+def newArgs = ['--add-exports','java.desktop/com.apple.eawt=ALL-UNNAMED',
+               '--add-opens', 'javafx.graphics/javafx.css=de.jensd.fx.fontawesomefx.commons',]
+
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     // implementation 'com.google.guava:guava:27.0.1-jre'

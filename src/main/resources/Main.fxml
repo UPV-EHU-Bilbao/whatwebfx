@@ -23,7 +23,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="256.0" stylesheets="@css/WhatWeb.css" text="CMS" textFill="WHITE">
+            <Button fx:id="btnCMS" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="47.0" prefWidth="256.0" stylesheets="@css/WhatWeb.css" text="CMS" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" size="15" />
                </graphic>
@@ -33,7 +33,7 @@
                <font>
                   <Font size="12.0" />
                </font></Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="256.0" stylesheets="@css/WhatWeb.css" text="Server" textFill="WHITE">
+            <Button fx:id="btnServer" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="47.0" prefWidth="256.0" stylesheets="@css/WhatWeb.css" text="Server" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CLOUD" size="15" />
                </graphic>
@@ -44,7 +44,7 @@
                   <Font size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="256.0" stylesheets="@css/WhatWeb.css" text="WhatWeb" textFill="WHITE">
+            <Button fx:id="btnWhatWeb" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="47.0" prefWidth="256.0" stylesheets="@css/WhatWeb.css" text="WhatWeb" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="COG" size="15" />
                </graphic>
@@ -57,6 +57,6 @@
             </Button>
          </children>
       </VBox>
-      <FontAwesomeIconView fill="#868383" glyphName="CLOSE" layoutX="980.0" layoutY="19.0" size="16" />
+      <FontAwesomeIconView fx:id="btnItxi" fill="#868383" glyphName="CLOSE" layoutX="980.0" layoutY="19.0" onMouseClicked="#onClickItxi" size="16" />
    </children>
 </AnchorPane>
