@@ -3,23 +3,33 @@
  */
 package ehu.isad;
 
+import ehu.isad.controllers.ui.CMSKud;
 import ehu.isad.controllers.ui.MainKud;
+import ehu.isad.controllers.ui.ServerKud;
+import ehu.isad.controllers.ui.WhatWebKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
 public class WhatWeb extends Application {
 
     private Parent mainUI;
+    private Parent cmsUI;
+    private Parent serverUI;
+    private Parent whatwebUI;
 
     private Stage stage;
 
     private MainKud mainKud;
+    private CMSKud cmsKud;
+    private ServerKud serverKud;
+    private WhatWebKud whatwebKud;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -55,10 +65,35 @@ public class WhatWeb extends Application {
 
     private void pantailakKargatu() throws IOException {
         FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/Main.fxml"));
-        mainUI = (Parent) loaderMain.load();
-        mainKud = loaderMain.getController();
-        mainKud.setMainApp(this);
 
-        //TODO Beste pantailak gehitzea falta da (goiko 4 lerro bezalakoak pantaila bakoitzerako, izenak aldatuz eta aldagaiak sortuz)
+        //Hau ez dakit zertarako egin behar den
+        mainKud = new MainKud(/*this*/);
+
+        cmsKud = new CMSKud();
+        serverKud = new ServerKud();
+        whatwebKud = new WhatWebKud();
+
+        Callback<Class<?>, Object> controllerFactory = type -> {
+            if (type == MainKud.class) {
+                return mainKud;
+            } else if (type == CMSKud.class) {
+                return cmsKud;
+            } else if (type == ServerKud.class) {
+                return serverKud;
+            } else if (type == WhatWebKud.class) {
+                return whatwebKud;
+            } else {
+                try {
+                    return type.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+
+        loaderMain.setControllerFactory(controllerFactory);
+
+        mainUI = (Parent) loaderMain.load();
     }
 }

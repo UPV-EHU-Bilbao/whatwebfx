@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -67,5 +68,18 @@
             </Label>
          </children>
       </Pane>
+      <StackPane fx:id="stackPanePanelak" layoutX="256.0" layoutY="112.0" prefHeight="488.0" prefWidth="744.0">
+         <children>
+            <AnchorPane fx:id="paneCMS" prefHeight="488.0" prefWidth="744.0">
+               <fx:include fx:id="cms" source="CMS.fxml" />
+            </AnchorPane>
+            <AnchorPane fx:id="paneServer" prefHeight="488.0" prefWidth="744.0">
+               <fx:include fx:id="server" source="Server.fxml" />
+            </AnchorPane>
+            <AnchorPane fx:id="paneWhatWeb" prefHeight="488.0" prefWidth="744.0">
+               <fx:include fx:id="whatweb" source="WhatWeb.fxml" />
+            </AnchorPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
