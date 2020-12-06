@@ -1,4 +1,4 @@
-package ehu.isad.controllers.db;
+/*package ehu.isad.controllers.db;
 
 public class WhatWebDBKud {
 
@@ -10,3 +10,4 @@ public class WhatWebDBKud {
 
     private WhatWebDBKud() {}
 }
+*/

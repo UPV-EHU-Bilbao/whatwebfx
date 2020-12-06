@@ -1,4 +1,4 @@
-package ehu.isad.controllers.db;
+/*package ehu.isad.controllers.db;
 
 import ehu.isad.utils.Propietateak;
 
@@ -80,3 +80,4 @@ public class DBKud {
         return rs;
     }
 }
+*/
