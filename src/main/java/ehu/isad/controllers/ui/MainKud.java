@@ -116,5 +116,8 @@ public class MainKud implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO Momentuz ez da beharrezkoa ezer sartzea metodo honetan
+        //hasieran bakarrik cmsPane ikusteko
+        paneServer.setVisible(false);
+        paneWhatWeb.setVisible(false);
     }
 }
