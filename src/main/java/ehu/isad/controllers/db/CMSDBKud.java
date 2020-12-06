@@ -1,4 +1,4 @@
-package ehu.isad.controllers.db;
+/*package ehu.isad.controllers.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,3 +95,4 @@ public class CMSDBKud {
         return lastupdated;
     }
 }
+*/

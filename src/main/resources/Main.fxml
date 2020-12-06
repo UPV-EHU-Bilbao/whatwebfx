@@ -57,6 +57,15 @@
             </Button>
          </children>
       </VBox>
-      <FontAwesomeIconView fx:id="btnItxi" fill="#868383" glyphName="CLOSE" layoutX="980.0" layoutY="19.0" onMouseClicked="#onClickItxi" size="16" />
+      <FontAwesomeIconView fx:id="btnItxi" fill="#868383" glyphName="CLOSE" layoutX="980.0" layoutY="19.0" onMouseClicked="#onClickItxi" onMouseEntered="#onSartuItxi" onMouseExited="#onAteraItxi" size="16" />
+      <Pane fx:id="pnlInfo" layoutX="256.0" layoutY="32.0" prefHeight="80.0" prefWidth="744.0" style="-fx-background-color: #7156DD;">
+         <children>
+            <Label fx:id="lblInfo" layoutX="78.0" layoutY="25.0" text="CMS" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

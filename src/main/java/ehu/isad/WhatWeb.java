@@ -21,6 +21,9 @@ public class WhatWeb extends Application {
 
     private MainKud mainKud;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     public static void main(String[] args) {
         launch();
     }
@@ -35,7 +38,18 @@ public class WhatWeb extends Application {
 
     private void mainErakutsi() throws IOException {
         this.pantailakKargatu();
-        stage.setScene(new Scene(mainUI, 1000, 600));
+
+        //Leihoa mugitu ahal izateko
+        mainUI.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        mainUI.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+
+        stage.setScene(new Scene(mainUI));
         stage.show();
     }
 

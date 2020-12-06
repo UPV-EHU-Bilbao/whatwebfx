@@ -1,4 +1,4 @@
-package ehu.isad.controllers.ui;
+/*package ehu.isad.controllers.ui;
 
 public class CMSKud {
 
@@ -12,3 +12,4 @@ public class CMSKud {
 
     }
 }
+*/
