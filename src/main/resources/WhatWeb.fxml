@@ -6,13 +6,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.WhatWebKud">
    <children>
       <Text layoutX="135.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL:" />
       <Text layoutX="135.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log:" />
       <TextField layoutX="209.0" layoutY="85.0" prefHeight="26.0" prefWidth="231.0" stylesheets="@css/WhatWeb.css" />
       <TextArea layoutX="209.0" layoutY="124.0" prefHeight="200.0" prefWidth="231.0" stylesheets="@css/WhatWeb.css" />
-      <Button fx:id="BtnScan" layoutX="332.0" layoutY="341.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="79.0" stylesheets="@css/WhatWeb.css" text="Scan" textFill="WHITE" />
+      <Button fx:id="BtnScan" layoutX="332.0" layoutY="341.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="79.0" style="-fx-background-color: #2B633F;" stylesheets="@css/WhatWeb.css" text="Scan" textFill="WHITE" />
    </children>
 </AnchorPane>
