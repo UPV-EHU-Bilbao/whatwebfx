@@ -42,7 +42,7 @@
                   <FontAwesomeIconView fill="#0707e5" glyphName="SEARCH" size="20.0" />
                   <TextField prefHeight="26.0" prefWidth="408.0" stylesheets="@css/WhatWeb.css" />
                   <ComboBox prefHeight="26.0" prefWidth="264.0" stylesheets="@css/WhatWeb.css" />
-                  <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" stylesheets="@css/WhatWeb.css" text="Add URL" textFill="WHITE">
+                  <Button fx:id="AddURL" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" stylesheets="@css/WhatWeb.css" text="Add URL" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="PLUS" />
                      </graphic>

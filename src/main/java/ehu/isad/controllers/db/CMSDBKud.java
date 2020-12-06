@@ -10,8 +10,6 @@ public class CMSDBKud {
     public static CMSDBKud getInstantzia(){
         return instantzia;
     }
-}
-
 
     //CMS bat pasatuz parametro gisa, eskaneatutako url-en artean zenbat (int) url duten cms hori.
     public int lortuCMSKopurua (String cms) {
