@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.CMSKud">
    <children>
       <GridPane layoutX="8.0" layoutY="11.0" prefHeight="466.0" prefWidth="723.0">
@@ -40,7 +39,7 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="723.0" spacing="15.0" GridPane.rowIndex="1">
                <children>
-                  <FontAwesomeIconView fill="#0707e5" glyphName="SEARCH" />
+                  <FontAwesomeIconView fill="#0707e5" glyphName="SEARCH" size="20.0" />
                   <TextField prefHeight="26.0" prefWidth="408.0" stylesheets="@css/WhatWeb.css" />
                   <ComboBox prefHeight="26.0" prefWidth="264.0" stylesheets="@css/WhatWeb.css" />
                   <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" stylesheets="@css/WhatWeb.css" text="Add URL" textFill="WHITE">
