@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.ServerKud">
    <children>
-      <Button layoutX="317.0" layoutY="413.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="110.0" text="Eguneratu" />
+      <Button layoutX="317.0" layoutY="413.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #2B3F63;" stylesheets="@css/WhatWeb.css" text="Eguneratu" textFill="WHITE" />
       <Label layoutX="282.0" layoutY="48.0" prefHeight="40.0" prefWidth="290.0" text="Eskaneatutako webguneak:" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
