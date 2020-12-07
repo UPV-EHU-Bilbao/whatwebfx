@@ -36,20 +36,21 @@ public class WhatWebKud implements Initializable {
     @FXML
     void onClick(ActionEvent event) {
         url = txtURL.getText();
-        urlEskaneatu("hola"); //TODO Ez dakit zertarako balio duen pasatzen zaion String parametroa
+        urlEskaneatu(); //TODO Ez dakit zertarako balio duen pasatzen zaion String parametroa
     }
 
     @FXML
     void onIntro(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             url = txtURL.getText();
-            urlEskaneatu("hola"); //TODO Ez dakit zertarako balio duen pasatzen zaion String parametroa
+            urlEskaneatu(); //TODO Ez dakit zertarako balio duen pasatzen zaion String parametroa
         }
     }
 
-    private void urlEskaneatu(String url) {
+    private void urlEskaneatu() {
         String emaitza = "";
-        emaitza = allProcesses().stream().collect(Collectors.joining(url));
+        String newLine = System.getProperty("line.separator");
+        emaitza = allProcesses().stream().collect(Collectors.joining(newLine));
         txtLog.setText(emaitza);
 
         //TODO Sartu emaitza DBan
@@ -66,7 +67,7 @@ public class WhatWebKud implements Initializable {
                 p = Runtime.getRuntime().exec
                         (System.getenv("windir") +"\\system32\\"+"tasklist.exe");
             } else {
-                p = Runtime.getRuntime().exec(whatwebpath + "/whatweb " + url); //TODO Funtzionatzen du, baina falta da komandoari aukerak (options) sartzea
+                p = Runtime.getRuntime().exec(whatwebpath + "whatweb " + url); //TODO Funtzionatzen du, baina falta da komandoari aukerak (options) sartzea
             }
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
