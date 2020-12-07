@@ -34,7 +34,10 @@
                </padding>
                <font>
                   <Font size="12.0" />
-               </font></Button>
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Button fx:id="btnServer" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="47.0" prefWidth="256.0" stylesheets="@css/WhatWeb.css" text="Server" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CLOUD" size="15" />
@@ -45,6 +48,9 @@
                <font>
                   <Font size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btnWhatWeb" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="47.0" prefWidth="256.0" stylesheets="@css/WhatWeb.css" text="WhatWeb" textFill="WHITE">
                <graphic>
@@ -56,6 +62,9 @@
                <font>
                   <Font size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </VBox>
