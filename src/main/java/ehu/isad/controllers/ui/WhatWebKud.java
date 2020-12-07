@@ -73,9 +73,9 @@ public class WhatWebKud implements Initializable {
             String line;
             Process p = null;
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
-                p = Runtime.getRuntime().exec("wsl " + whatwebpath + "whatweb " + url);
+                p = Runtime.getRuntime().exec("wsl " + whatwebpath + "whatweb --colour=never " + url);
             } else {
-                p = Runtime.getRuntime().exec(whatwebpath + "whatweb " + url); //TODO Funtzionatzen du, baina falta da komandoari aukerak (options) sartzea
+                p = Runtime.getRuntime().exec(whatwebpath + "whatweb --colour=never " + url); //TODO Funtzionatzen du, baina falta da komandoari aukerak (options) sartzea
             }
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
