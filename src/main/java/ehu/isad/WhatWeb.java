@@ -3,6 +3,7 @@
  */
 package ehu.isad;
 
+import ehu.isad.controllers.db.WhatWebDBKud;
 import ehu.isad.controllers.ui.CMSKud;
 import ehu.isad.controllers.ui.MainKud;
 import ehu.isad.controllers.ui.ServerKud;
@@ -72,6 +73,7 @@ public class WhatWeb extends Application {
         cmsKud = new CMSKud();
         serverKud = new ServerKud();
         whatwebKud = new WhatWebKud();
+        whatwebKud.setMainApp(this);
 
         Callback<Class<?>, Object> controllerFactory = type -> {
             if (type == MainKud.class) {
@@ -95,5 +97,9 @@ public class WhatWeb extends Application {
         loaderMain.setControllerFactory(controllerFactory);
 
         mainUI = (Parent) loaderMain.load();
+    }
+
+    public void serverPantailaEguneratu() {
+        serverKud.eguneratu();
     }
 }

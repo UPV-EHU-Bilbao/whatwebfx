@@ -1,5 +1,7 @@
 package ehu.isad.controllers.ui;
 
+import ehu.isad.WhatWeb;
+import ehu.isad.controllers.db.WhatWebDBKud;
 import ehu.isad.utils.Propietateak;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 
 public class WhatWebKud implements Initializable {
 
+    private WhatWeb mainApp;
+
     @FXML
     private TextField txtURL;
 
@@ -33,6 +37,10 @@ public class WhatWebKud implements Initializable {
 
     private String url;
     private String whatwebpath;
+
+    public void setMainApp(WhatWeb main) {
+        mainApp = main;
+    }
 
     @FXML
     void onClick(ActionEvent event) {
@@ -50,6 +58,7 @@ public class WhatWebKud implements Initializable {
 
     private void urlEskaneatu() {
         txtLog.setText("Kargatzen. Itxaron, mesedez...");
+        txtURL.setEditable(false);
         Thread haria = new Thread( () -> {
             String newLine = System.getProperty("line.separator");
             final StringBuilder emaitza = new StringBuilder();
@@ -58,10 +67,14 @@ public class WhatWebKud implements Initializable {
             });
             Platform.runLater( () -> {
                 txtLog.setText(emaitza.toString());
-
-                //TODO Sartu emaitza DBan
-
-                //TODO Eguneratu Server pantaila
+                if (!txtLog.getText().isBlank()) {
+                    if (!WhatWebDBKud.getWhatWebDBKud().sartutaDagoURL(url)) {
+                        WhatWebDBKud.getWhatWebDBKud().sartuURL(url);
+                    }
+                    mainApp.serverPantailaEguneratu();
+                }
+                txtURL.clear();
+                txtURL.setEditable(true);
             });
         });
         haria.start();
