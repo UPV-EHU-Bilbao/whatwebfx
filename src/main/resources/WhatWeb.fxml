@@ -10,8 +10,8 @@
    <children>
       <Text layoutX="135.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL:" />
       <Text layoutX="135.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log:" />
-      <TextField layoutX="209.0" layoutY="85.0" prefHeight="26.0" prefWidth="231.0" stylesheets="@css/WhatWeb.css" />
-      <TextArea layoutX="209.0" layoutY="124.0" prefHeight="200.0" prefWidth="231.0" stylesheets="@css/WhatWeb.css" />
-      <Button fx:id="BtnScan" layoutX="332.0" layoutY="341.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="79.0" style="-fx-background-color: #2B633F;" stylesheets="@css/WhatWeb.css" text="Scan" textFill="WHITE" />
+      <TextField fx:id="txtURL" layoutX="209.0" layoutY="85.0" onKeyPressed="#onIntro" prefHeight="26.0" prefWidth="231.0" promptText="Idatzi URL bat" stylesheets="@css/WhatWeb.css" />
+      <TextArea fx:id="txtLog" editable="false" layoutX="209.0" layoutY="124.0" prefHeight="200.0" prefWidth="231.0" stylesheets="@css/WhatWeb.css" wrapText="true" />
+      <Button fx:id="btnScan" layoutX="332.0" layoutY="341.0" mnemonicParsing="false" onAction="#onClick" prefHeight="16.0" prefWidth="79.0" style="-fx-background-color: #2B633F;" stylesheets="@css/WhatWeb.css" text="Scan" textFill="WHITE" />
    </children>
 </AnchorPane>
