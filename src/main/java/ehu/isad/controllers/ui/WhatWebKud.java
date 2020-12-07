@@ -1,6 +1,7 @@
 package ehu.isad.controllers.ui;
 
 import ehu.isad.utils.Propietateak;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,26 +37,34 @@ public class WhatWebKud implements Initializable {
     @FXML
     void onClick(ActionEvent event) {
         url = txtURL.getText();
-        urlEskaneatu(); //TODO Ez dakit zertarako balio duen pasatzen zaion String parametroa
+        urlEskaneatu();
     }
 
     @FXML
     void onIntro(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             url = txtURL.getText();
-            urlEskaneatu(); //TODO Ez dakit zertarako balio duen pasatzen zaion String parametroa
+            urlEskaneatu();
         }
     }
 
     private void urlEskaneatu() {
-        String emaitza = "";
-        String newLine = System.getProperty("line.separator");
-        emaitza = allProcesses().stream().collect(Collectors.joining(newLine));
-        txtLog.setText(emaitza);
+        txtLog.setText("Kargatzen. Itxaron, mesedez...");
+        Thread haria = new Thread( () -> {
+            String newLine = System.getProperty("line.separator");
+            final StringBuilder emaitza = new StringBuilder();
+            allProcesses().forEach(line -> {
+                emaitza.append(line + newLine);
+            });
+            Platform.runLater( () -> {
+                txtLog.setText(emaitza.toString());
 
-        //TODO Sartu emaitza DBan
+                //TODO Sartu emaitza DBan
 
-        //TODO Eguneratu Server pantaila
+                //TODO Eguneratu Server pantaila
+            });
+        });
+        haria.start();
     }
 
     public List<String> allProcesses() {
