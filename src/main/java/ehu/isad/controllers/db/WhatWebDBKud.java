@@ -17,12 +17,12 @@ public class WhatWebDBKud {
 
     public void sartuURL(String url) {
         String query = "insert into server_historiala values('" + url + "')";
-        DBKud.getInstantzia().execSQL(query);
+        DBKud.getDBKud().execSQL(query);
     }
 
     public ArrayList<String> lortuUrl() {
         String query = "select url from server_historiala";
-        ResultSet rs = DBKud.getInstantzia().execSQL(query);
+        ResultSet rs = DBKud.getDBKud().execSQL(query);
         ArrayList<String> urlList = new ArrayList<>();
         try {
             while (rs.next()) {
@@ -36,7 +36,7 @@ public class WhatWebDBKud {
 
     public boolean sartutaDagoURL(String url) {
         String query = "select url from server_historiala where url='" + url + "'";
-        ResultSet rs = DBKud.getInstantzia().execSQL(query);
+        ResultSet rs = DBKud.getDBKud().execSQL(query);
         try {
             return rs.next();
         } catch(SQLException throwables){
