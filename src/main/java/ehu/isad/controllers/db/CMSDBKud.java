@@ -3,8 +3,12 @@ package ehu.isad.controllers.db;
 import ehu.isad.models.CMSModel;
 
 import java.sql.Array;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class CMSDBKud {
@@ -99,57 +103,70 @@ public class CMSDBKud {
 
     public ArrayList<CMSModel> getCMSModel() {
         ArrayList<CMSModel> cmsModels = new ArrayList<>();
-        String query = "select target_id,target from targets";
+        String query = "select target_id,target,last_updated from targets";
         ResultSet rs = DBKud.getDBKud().execSQL(query);
-        ArrayList<String> bikote;
+        ArrayList<String> hirukote;
         ArrayList<ArrayList<String>> emaitzaZerr = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                bikote = new ArrayList<>();
-                String urlEmaitza = rs.getString("target");
-                bikote.add(urlEmaitza);
-                String idTargetEmaitza = rs.getString("target_id");
-                bikote.add(idTargetEmaitza);
-                emaitzaZerr.add(bikote);
-            }
-            rs.close();
-            for (ArrayList<String> x : emaitzaZerr) {
-                String url = x.get(0);
-                String idTarget = x.get(1);
-                query = "select s.plugin_id,s.version from scans s,plugins p where target_id=" + idTarget;
-                rs = DBKud.getDBKud().execSQL(query);
-                String cms = "";
-                String version = "";
-                ArrayList<Integer> idPluginZerr = new ArrayList<>();
-                ArrayList<String> versionZerr = new ArrayList<>();
+        if (rs != null) {
+            try {
                 while (rs.next()) {
-                    int idPluginEmaitza = rs.getInt(1);
-                    idPluginZerr.add(idPluginEmaitza);
-                    String versionEmaitza = rs.getString(2);
-                    versionZerr.add(versionEmaitza);
+                    hirukote = new ArrayList<>();
+                    String urlEmaitza = rs.getString("target");
+                    hirukote.add(urlEmaitza);
+                    String idTargetEmaitza = rs.getString("target_id");
+                    hirukote.add(idTargetEmaitza);
+                    String lastUpdatedEmaitza = rs.getString("last_updated");
+                    hirukote.add(lastUpdatedEmaitza);
+                    emaitzaZerr.add(hirukote);
                 }
-                if (idPluginZerr.contains(414)) {
-                    cms = "Drupal";
-                    version = versionZerr.get(idPluginZerr.indexOf(414));
-                } else if (idPluginZerr.contains(732)) {
-                    cms = "Joomla";
-                    version = versionZerr.get(idPluginZerr.indexOf(732));
-                } else if (idPluginZerr.contains(1149)) {
-                    cms = "phpMyAdmin";
-                    version = versionZerr.get(idPluginZerr.indexOf(1149));
-                } else if (idPluginZerr.contains(1716)) {
-                    cms = "WordPress";
-                    version = versionZerr.get(idPluginZerr.indexOf(1716));
+                rs.close();
+                for (ArrayList<String> x : emaitzaZerr) {
+                    String url = x.get(0);
+                    String idTarget = x.get(1);
+                    String lastUpdated = x.get(2);
+                    query = "select s.plugin_id,s.version from scans s,plugins p where target_id=" + idTarget;
+                    rs = DBKud.getDBKud().execSQL(query);
+                    String cms = "";
+                    String version = "";
+                    ArrayList<Integer> idPluginZerr = new ArrayList<>();
+                    ArrayList<String> versionZerr = new ArrayList<>();
+                    while (rs.next()) {
+                        int idPluginEmaitza = rs.getInt(1);
+                        idPluginZerr.add(idPluginEmaitza);
+                        String versionEmaitza = rs.getString(2);
+                        versionZerr.add(versionEmaitza);
+                    }
+                    if (idPluginZerr.contains(414)) {
+                        cms = "Drupal";
+                        version = versionZerr.get(idPluginZerr.indexOf(414));
+                    } else if (idPluginZerr.contains(732)) {
+                        cms = "Joomla";
+                        version = versionZerr.get(idPluginZerr.indexOf(732));
+                    } else if (idPluginZerr.contains(1149)) {
+                        cms = "phpMyAdmin";
+                        version = versionZerr.get(idPluginZerr.indexOf(1149));
+                    } else if (idPluginZerr.contains(1716)) {
+                        cms = "WordPress";
+                        version = versionZerr.get(idPluginZerr.indexOf(1716));
+                    } else {
+                        cms = "ezezaguna";
+                        version = "0";
+                    }
+                    cmsModels.add(new CMSModel(url,cms,version, lastUpdated));
                 }
-                cmsModels.add(new CMSModel(url,cms,version,"2020/12/11"));
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
         return cmsModels;
     }
 
     public void sartuLerroa(String lerroa) {
         DBKud.getDBKud().execSQL(lerroa);
+    }
+
+    public void eguneratuLastUpdated(String scanUrl) {
+        String query = "update targets set last_updated=strftime('%Y/%m/%d', date('now')) where target like '%" + scanUrl + "%'";
+        DBKud.getDBKud().execSQL(query);
     }
 }

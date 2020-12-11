@@ -45,6 +45,9 @@ public class CMSKud implements Initializable {
     private TextField txtUrl;
 
     @FXML
+    private ComboBox<String> cmbCMS;
+
+    @FXML
     private Button btnAddURL;
 
     @FXML
@@ -87,6 +90,11 @@ public class CMSKud implements Initializable {
 
         cmsTaulaSortu();
         eguneratuCmsKop();
+
+        cmbCMS.getItems().add("Drupal");
+        cmbCMS.getItems().add("Joomla");
+        cmbCMS.getItems().add("phpMyAdmin");
+        cmbCMS.getItems().add("WordPress");
     }
 
     private void cmsTaulaSortu() {
@@ -120,6 +128,7 @@ public class CMSKud implements Initializable {
                         br.close();
                         f.delete();
                     }
+                    CMSDBKud.getDBKud().eguneratuLastUpdated(scanUrl);
                     cmsTaulaSortu();
                     eguneratuCmsKop();
                     btnAddURL.setDisable(false);

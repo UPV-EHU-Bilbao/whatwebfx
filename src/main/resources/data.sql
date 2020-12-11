@@ -1806,3 +1806,4 @@ INSERT INTO plugins (name) VALUES ('Plugin-Tutorial-4');
 INSERT INTO plugins (name) VALUES ('Plugin-Tutorial-5');
 INSERT INTO plugins (name) VALUES ('Plugin-Tutorial-6');
 INSERT INTO plugins (name) VALUES ('Plugin-Tutorial-7');
+INSERT INTO plugins (name) VALUES ('Bootstrap');

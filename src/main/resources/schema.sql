@@ -6,6 +6,7 @@ CREATE TABLE "targets" (
                            "target_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                            "target"	TEXT NOT NULL,
                            "status"	TEXT,
+                           "last_updated"	DATE,
                            UNIQUE("target", "status")
 );
 CREATE TABLE "scans" (

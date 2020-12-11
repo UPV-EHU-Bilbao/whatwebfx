@@ -6,6 +6,7 @@ CREATE TABLE "targets" (
                            "target_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                            "target"	TEXT NOT NULL,
                            "status"	TEXT,
+                           "last_updated"	DATE,
                            UNIQUE("target", "status")
 );
 CREATE TABLE "scans" (
@@ -1840,3 +1841,4 @@ INSERT INTO plugins (name) VALUES ('Plugin-Tutorial-4');
 INSERT INTO plugins (name) VALUES ('Plugin-Tutorial-5');
 INSERT INTO plugins (name) VALUES ('Plugin-Tutorial-6');
 INSERT INTO plugins (name) VALUES ('Plugin-Tutorial-7');
+INSERT INTO plugins (name) VALUES ('Bootstrap');

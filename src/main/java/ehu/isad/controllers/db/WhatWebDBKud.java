@@ -24,12 +24,14 @@ public class WhatWebDBKud {
         String query = "select url from server_historiala";
         ResultSet rs = DBKud.getDBKud().execSQL(query);
         ArrayList<String> urlList = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                urlList.add(rs.getString("url"));
+        if (rs != null) {
+            try {
+                while (rs.next()) {
+                    urlList.add(rs.getString("url"));
+                }
+            } catch(SQLException throwables){
+                throwables.printStackTrace();
             }
-        } catch(SQLException throwables){
-            throwables.printStackTrace();
         }
         return urlList;
     }
