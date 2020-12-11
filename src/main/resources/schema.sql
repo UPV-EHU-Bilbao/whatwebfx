@@ -16,6 +16,7 @@ CREATE TABLE "scans" (
                          "version"	TEXT,
                          "os"	TEXT,
                          "string"	TEXT,
+                         "account"	TEXT,
                          "model"	TEXT,
                          "firmware"	TEXT,
                          "module"	TEXT,
