@@ -44,7 +44,7 @@
                   <FontAwesomeIconView fill="#0707e5" glyphName="SEARCH" size="20.0" />
                   <TextField fx:id="txtUrl" onKeyPressed="#onIntro" prefHeight="26.0" prefWidth="408.0" stylesheets="@css/WhatWeb.css" />
                   <ComboBox prefHeight="26.0" prefWidth="264.0" stylesheets="@css/WhatWeb.css" />
-                  <Button fx:id="AddURL" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="200.0" stylesheets="@css/WhatWeb.css" text="Add URL" textFill="WHITE">
+                  <Button fx:id="btnAddURL" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="200.0" stylesheets="@css/WhatWeb.css" text="Add URL" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="PLUS" />
                      </graphic>

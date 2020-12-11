@@ -5,8 +5,10 @@ import ehu.isad.controllers.db.WhatWebDBKud;
 import ehu.isad.models.CMSModel;
 import ehu.isad.utils.Propietateak;
 import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,25 +45,32 @@ public class CMSKud implements Initializable {
     private TextField txtUrl;
 
     @FXML
-    private Button addURL;
+    private Button btnAddURL;
 
     @FXML
     private Label lblCMSKop;
 
     private String scanUrl;
     private String whatwebpath;
+    ObservableList<CMSModel> cmsZerrObs;
 
     @FXML
     void onClick(ActionEvent event) {
-        scanUrl = txtUrl.getText();
-        urlEskaneatu();
+        if (!txtUrl.getText().equals("")) {
+            btnAddURL.setDisable(true);
+            scanUrl = txtUrl.getText();
+            urlEskaneatu();
+        }
     }
 
     @FXML
     void onIntro(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            scanUrl = txtUrl.getText();
-            urlEskaneatu();
+        if (!txtUrl.getText().equals("")) {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                btnAddURL.setDisable(true);
+                scanUrl = txtUrl.getText();
+                urlEskaneatu();
+            }
         }
     }
 
@@ -74,16 +83,15 @@ public class CMSKud implements Initializable {
         url.setCellValueFactory(new PropertyValueFactory<>("URL"));
         cms.setCellValueFactory(new PropertyValueFactory<>("CMS"));
         version.setCellValueFactory(new PropertyValueFactory<>("Version"));
-        lastUpdated.setCellValueFactory(new PropertyValueFactory<>("Last Updated"));
+        lastUpdated.setCellValueFactory(new PropertyValueFactory<>("LastUpdated"));
 
-        this.cmsTaulaSortu();
-        this.eguneratuCmsKop();
+        cmsTaulaSortu();
+        eguneratuCmsKop();
     }
 
     private void cmsTaulaSortu() {
-        cmsZerr = new ArrayList<>();
         cmsZerr = CMSDBKud.getDBKud().getCMSModel();
-        ObservableList<CMSModel> cmsZerrObs = FXCollections.observableArrayList(cmsZerr);
+        cmsZerrObs = FXCollections.observableArrayList(cmsZerr);
         tbCMS.setItems(cmsZerrObs);
     }
 
@@ -97,7 +105,6 @@ public class CMSKud implements Initializable {
             allProcesses();
             Platform.runLater( () -> {
                 try {
-                    cmsTaulaSortu();
                     txtUrl.clear();
                     txtUrl.setEditable(true);
                     String lerroa;
@@ -110,11 +117,12 @@ public class CMSKud implements Initializable {
                             System.out.println(lerroa);
                             CMSDBKud.getDBKud().sartuLerroa(lerroa);
                         }
-                        System.out.println(f.getAbsolutePath());
-                        f.delete();
-                        System.out.println(f.getAbsolutePath());
                         br.close();
-                    } else System.out.println("no entra");
+                        f.delete();
+                    }
+                    cmsTaulaSortu();
+                    eguneratuCmsKop();
+                    btnAddURL.setDisable(false);
                 } catch (Exception err) {
                     err.printStackTrace();
                 }

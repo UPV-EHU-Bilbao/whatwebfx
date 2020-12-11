@@ -15,4 +15,20 @@ public class CMSModel {
         this.version = pVersion;
         this.lastUpdated = pLastUpdated;
     }
+
+    public String getURL() {
+        return url;
+    }
+
+    public String getCMS() {
+        return cms;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public String getLastUpdated() {
+        return lastUpdated;
+    }
 }
