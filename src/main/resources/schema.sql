@@ -4,8 +4,9 @@ CREATE TABLE "plugins" (
 );
 CREATE TABLE "targets" (
                            "target_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                           "target"	TEXT NOT NULL UNIQUE,
-                           "status"	TEXT UNIQUE
+                           "target"	TEXT NOT NULL,
+                           "status"	TEXT,
+                           UNIQUE("target", "status")
 );
 CREATE TABLE "scans" (
                          "scan_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
