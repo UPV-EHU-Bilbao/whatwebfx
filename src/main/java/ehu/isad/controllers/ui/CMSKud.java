@@ -5,10 +5,14 @@ import ehu.isad.controllers.db.WhatWebDBKud;
 import ehu.isad.models.CMSModel;
 import ehu.isad.utils.Propietateak;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +27,7 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class CMSKud implements Initializable {
 
@@ -67,7 +72,7 @@ public class CMSKud implements Initializable {
     }
 
     @FXML
-    void onIntro(KeyEvent event) {
+    void onKeyPressed(KeyEvent event) {
         if (!txtUrl.getText().equals("")) {
             if (event.getCode().equals(KeyCode.ENTER)) {
                 btnAddURL.setDisable(true);
@@ -91,10 +96,14 @@ public class CMSKud implements Initializable {
         cmsTaulaSortu();
         eguneratuCmsKop();
 
+        cmbCMS.getItems().add("");
         cmbCMS.getItems().add("Drupal");
         cmbCMS.getItems().add("Joomla");
         cmbCMS.getItems().add("phpMyAdmin");
         cmbCMS.getItems().add("WordPress");
+        cmbCMS.getSelectionModel().selectFirst();
+
+        sortuFiltroa();
     }
 
     private void cmsTaulaSortu() {
@@ -107,14 +116,50 @@ public class CMSKud implements Initializable {
         lblCMSKop.setText("Record count: " + tbCMS.getItems().size());
     }
 
+    private void sortuFiltroa() {
+        FilteredList<CMSModel> filteredData = new FilteredList<>(cmsZerrObs, b -> true);
+
+        txtUrl.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(cmsModel -> {
+                if (newValue == null || (newValue.isEmpty() && cmbCMS.getValue().equals(""))) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (cmsModel.getURL().toLowerCase().indexOf(lowerCaseFilter) != -1 && cmsModel.getCMS().toLowerCase().indexOf(cmbCMS.getValue().toLowerCase()) != -1) {
+                    return true;
+                }
+                else if (cmsModel.getLastUpdated().toLowerCase().indexOf(lowerCaseFilter)!= -1 && cmsModel.getCMS().toLowerCase().indexOf(cmbCMS.getValue().toLowerCase()) != -1)
+                    return true;
+                else
+                    return false;
+            });
+            eguneratuCmsKop();
+        });
+
+        cmbCMS.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(cmsModel -> {
+                if (newValue == null || (newValue.isEmpty() && txtUrl.getText().equals(""))) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (cmsModel.getCMS().toLowerCase().indexOf(lowerCaseFilter) != -1 && (cmsModel.getURL().toLowerCase().indexOf(txtUrl.getText().toLowerCase()) != -1 || cmsModel.getLastUpdated().toLowerCase().indexOf(txtUrl.getText().toLowerCase()) != -1)) {
+                    return true;
+                } else
+                    return false;
+            });
+            eguneratuCmsKop();
+        }));
+        SortedList<CMSModel> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tbCMS.comparatorProperty());
+        tbCMS.setItems(sortedData);
+    }
+
     private void urlEskaneatu() {
         txtUrl.setEditable(false);
         Thread haria = new Thread( () -> {
             allProcesses();
             Platform.runLater( () -> {
                 try {
-                    txtUrl.clear();
-                    txtUrl.setEditable(true);
                     String lerroa;
                     File f = new File("scanInfo.sql");
                     if (f.exists() && f.isFile()) {
@@ -130,7 +175,10 @@ public class CMSKud implements Initializable {
                     }
                     CMSDBKud.getDBKud().eguneratuLastUpdated(scanUrl);
                     cmsTaulaSortu();
-                    eguneratuCmsKop();
+                    sortuFiltroa();
+                    txtUrl.clear();
+                    txtUrl.setEditable(true);
+                    cmbCMS.getSelectionModel().selectFirst();
                     btnAddURL.setDisable(false);
                 } catch (Exception err) {
                     err.printStackTrace();

@@ -41,9 +41,9 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="723.0" spacing="15.0" GridPane.rowIndex="1">
                <children>
-                  <FontAwesomeIconView fill="#0707e5" glyphName="SEARCH" size="20.0" />
-                  <TextField fx:id="txtUrl" onKeyPressed="#onIntro" prefHeight="26.0" prefWidth="408.0" stylesheets="@css/WhatWeb.css" />
-                  <ComboBox fx:id="cmbCMS" prefHeight="26.0" prefWidth="264.0" stylesheets="@css/WhatWeb.css" />
+                  <FontAwesomeIconView fill="#2a1c42" glyphName="SEARCH" size="20.0" />
+                  <TextField fx:id="txtUrl" onKeyPressed="#onKeyPressed" prefHeight="26.0" prefWidth="408.0" style="-fx-border-color: #2A1C42; -fx-background-color: #e8ddff; -fx-font: #7156DD;" stylesheets="@css/WhatWeb.css" />
+                  <ComboBox fx:id="cmbCMS" prefHeight="26.0" prefWidth="264.0" style="-fx-background-color: #e8ddff; -fx-border-color: #2A1C42;" stylesheets="@css/WhatWeb.css" />
                   <Button fx:id="btnAddURL" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="200.0" stylesheets="@css/WhatWeb.css" text="Add URL" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="PLUS" />
