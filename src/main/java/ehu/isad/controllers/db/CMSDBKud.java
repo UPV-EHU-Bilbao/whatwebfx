@@ -15,6 +15,10 @@ public class CMSDBKud {
     }
 
     public ArrayList<CMSModel> getCMSModel() {
+        int drupalId = getDrupalId();
+        int joomlaId = getJoomlaId();
+        int phpayadminId = getPhpayadminId();
+        int wordpressId = getWordpressId();
         ArrayList<CMSModel> cmsModels = new ArrayList<>();
         String query = "select target_id,target,last_updated from targets";
         ResultSet rs = DBKud.getDBKud().execSQL(query);
@@ -49,18 +53,18 @@ public class CMSDBKud {
                         String versionEmaitza = rs.getString(2);
                         versionZerr.add(versionEmaitza);
                     }
-                    if (idPluginZerr.contains(414)) {
+                    if (idPluginZerr.contains(drupalId)) {
                         cms = "Drupal";
-                        version = versionZerr.get(idPluginZerr.indexOf(414));
-                    } else if (idPluginZerr.contains(732)) {
+                        version = versionZerr.get(idPluginZerr.indexOf(drupalId));
+                    } else if (idPluginZerr.contains(joomlaId)) {
                         cms = "Joomla";
-                        version = versionZerr.get(idPluginZerr.indexOf(732));
-                    } else if (idPluginZerr.contains(1149)) {
+                        version = versionZerr.get(idPluginZerr.indexOf(joomlaId));
+                    } else if (idPluginZerr.contains(phpayadminId)) {
                         cms = "phpMyAdmin";
-                        version = versionZerr.get(idPluginZerr.indexOf(1149));
-                    } else if (idPluginZerr.contains(1716)) {
+                        version = versionZerr.get(idPluginZerr.indexOf(phpayadminId));
+                    } else if (idPluginZerr.contains(wordpressId)) {
                         cms = "WordPress";
-                        version = versionZerr.get(idPluginZerr.indexOf(1716));
+                        version = versionZerr.get(idPluginZerr.indexOf(wordpressId));
                     } else {
                         cms = "ezezaguna";
                         version = "0";
@@ -72,6 +76,50 @@ public class CMSDBKud {
             }
         }
         return cmsModels;
+    }
+
+    private int getDrupalId() {
+        String query = "select plugin_id from plugins where name='Drupal'";
+        ResultSet rs = DBKud.getDBKud().execSQL(query);
+        try {
+            return rs.getInt(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+
+    private int getJoomlaId() {
+        String query = "select plugin_id from plugins where name='Joomla'";
+        ResultSet rs = DBKud.getDBKud().execSQL(query);
+        try {
+            return rs.getInt(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+
+    private int getPhpayadminId() {
+        String query = "select plugin_id from plugins where name='phpMyAdmin'";
+        ResultSet rs = DBKud.getDBKud().execSQL(query);
+        try {
+            return rs.getInt(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+
+    private int getWordpressId() {
+        String query = "select plugin_id from plugins where name='WordPress'";
+        ResultSet rs = DBKud.getDBKud().execSQL(query);
+        try {
+            return rs.getInt(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
     }
 
     public void sartuLerroa(String lerroa) {

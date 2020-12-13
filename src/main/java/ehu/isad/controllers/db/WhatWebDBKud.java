@@ -43,12 +43,12 @@ public class WhatWebDBKud {
     }
 
     public void sartuURL(String url) {
-        String query = "insert into server_historiala values('" + url + "', (select strftime('%Y/%m/%d %H:%M:%S')))";
+        String query = "insert into server_historiala values('" + url + "', (select datetime('now', 'localtime')))";
         DBKud.getDBKud().execSQL(query);
     }
 
     public void eguneratuURL(String url) {
-        String query = "update server_historiala set last_updated=(select strftime('%Y/%m/%d %H:%M:%S')) where url ='" + url + "'";
+        String query = "update server_historiala set last_updated=(select datetime('now', 'localtime')) where url ='" + url + "'";
         DBKud.getDBKud().execSQL(query);
     }
 }
