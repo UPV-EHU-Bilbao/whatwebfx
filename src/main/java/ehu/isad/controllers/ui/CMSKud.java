@@ -140,6 +140,7 @@ public class CMSKud implements Initializable {
         cmbCMS.getItems().add("Joomla");
         cmbCMS.getItems().add("phpMyAdmin");
         cmbCMS.getItems().add("WordPress");
+        cmbCMS.getItems().add("ezezaguna");
         cmbCMS.getSelectionModel().selectFirst();
 
         btnAddURL.setDisable(true);
