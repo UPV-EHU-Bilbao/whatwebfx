@@ -91,8 +91,8 @@ public class WhatWebKud implements Initializable {
                     }
                     mainApp.serverPantailaEguneratu();
                 }
-                aktibatuFuntzionalitateak();
                 txtURL.clear();
+                aktibatuFuntzionalitateak();
                 txtURL.setEditable(true);
             });
         });
