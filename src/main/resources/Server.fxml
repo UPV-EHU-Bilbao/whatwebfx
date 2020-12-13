@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -21,7 +20,6 @@
          </font>
       </Label>
       <FontAwesomeIconView glyphName="SEARCH" layoutX="246.0" layoutY="74.0" size="18.0" textAlignment="CENTER" />
-      <ScrollBar layoutX="534.0" layoutY="95.0" orientation="VERTICAL" prefHeight="298.0" prefWidth="14.0" />
       <ListView fx:id="listHistoriala" layoutX="244.0" layoutY="95.0" prefHeight="298.0" prefWidth="290.0" />
    </children>
 </AnchorPane>
