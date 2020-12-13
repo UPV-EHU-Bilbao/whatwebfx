@@ -206,7 +206,9 @@ public class CMSKud implements Initializable {
     public void gaituTxtURLEventFilter() {
         WhatWeb.getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, evt -> {
             if (!WhatWeb.inHierarchy(evt.getPickResult().getIntersectedNode(), txtUrl)) {
-                panela.requestFocus();
+                if (evt.getPickResult().getIntersectedNode().getId() != null && !evt.getPickResult().getIntersectedNode().getId().equals("cmbCMS")) {
+                    panela.requestFocus();
+                }
             }
         });
     }

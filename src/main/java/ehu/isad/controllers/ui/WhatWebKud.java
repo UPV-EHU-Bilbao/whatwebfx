@@ -48,9 +48,13 @@ public class WhatWebKud implements Initializable {
         mainApp = main;
     }
 
+    public void urlEguneratu(String selectedItem) {
+        txtURL.setText(selectedItem);
+        urlEskaneatu();
+    }
+
     @FXML
     void onClick(ActionEvent event) {
-        url = txtURL.getText();
         urlEskaneatu();
     }
 
@@ -62,7 +66,6 @@ public class WhatWebKud implements Initializable {
     @FXML
     void onIntro(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER) && !btnScan.isDisabled()) {
-            url = txtURL.getText();
             urlEskaneatu();
         }
     }
@@ -74,6 +77,7 @@ public class WhatWebKud implements Initializable {
     }
 
     private void urlEskaneatu() {
+        url = txtURL.getText();
         txtLog.setText("Kargatzen. Itxaron, mesedez...");
         txtURL.setEditable(false);
         Thread haria = new Thread( () -> {
@@ -87,6 +91,8 @@ public class WhatWebKud implements Initializable {
                 if (!txtLog.getText().isBlank()) {
                     if (!WhatWebDBKud.getWhatWebDBKud().sartutaDagoURL(url)) {
                         WhatWebDBKud.getWhatWebDBKud().sartuURL(url);
+                    } else {
+                        WhatWebDBKud.getWhatWebDBKud().eguneratuURL(url);
                     }
                     mainApp.serverPantailaEguneratu();
                 }

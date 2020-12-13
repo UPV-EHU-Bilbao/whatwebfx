@@ -62,40 +62,26 @@ public class MainKud implements Initializable {
             lblInfo.setText("CMS");
             pnlInfo.setBackground(new Background(new BackgroundFill(Color.rgb(113, 86, 221), CornerRadii.EMPTY, Insets.EMPTY)));
 
-            //Honi bueltatxo bat eman behar zaio
             paneServer.setVisible(false);
             paneWhatWeb.setVisible(false);
             paneCMS.setVisible(true);
 
             paneCMS.toFront();
             paneCMS.requestFocus();
-            //TODO CMS botoia klikatzean gertatzen dena
         }
         else if (event.getSource() == btnServer) {
             lblInfo.setText("Server");
             pnlInfo.setBackground(new Background(new BackgroundFill(Color.rgb(43, 63, 99), CornerRadii.EMPTY, Insets.EMPTY)));
 
-            //Honi bueltatxo bat eman behar zaio
             paneCMS.setVisible(false);
             paneWhatWeb.setVisible(false);
             paneServer.setVisible(true);
 
             paneServer.toFront();
             paneServer.requestFocus();
-            //TODO Server botoia klikatzean gertatzen dena
         }
         else if (event.getSource() == btnWhatWeb) {
-            lblInfo.setText("WhatWeb");
-            pnlInfo.setBackground(new Background(new BackgroundFill(Color.rgb(43, 99, 63), CornerRadii.EMPTY, Insets.EMPTY)));
-
-            //Honi bueltatxo bat eman behar zaio
-            paneCMS.setVisible(false);
-            paneServer.setVisible(false);
-            paneWhatWeb.setVisible(true);
-
-            paneWhatWeb.toFront();
-            paneWhatWeb.requestFocus();
-            //TODO WhatWeb botoia klikatzean gertatzen dena
+            erakutsiWhatWeb();
         }
     }
 
@@ -125,5 +111,17 @@ public class MainKud implements Initializable {
         //hasieran bakarrik cmsPane ikusteko
         paneServer.setVisible(false);
         paneWhatWeb.setVisible(false);
+    }
+
+    public void erakutsiWhatWeb() {
+        lblInfo.setText("WhatWeb");
+        pnlInfo.setBackground(new Background(new BackgroundFill(Color.rgb(43, 99, 63), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        paneCMS.setVisible(false);
+        paneServer.setVisible(false);
+        paneWhatWeb.setVisible(true);
+
+        paneWhatWeb.toFront();
+        paneWhatWeb.requestFocus();
     }
 }

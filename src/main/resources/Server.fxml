@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.ServerKud">
+<AnchorPane fx:id="panela" prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.ServerKud">
    <children>
       <Button fx:id="btnEguneratu" layoutX="317.0" layoutY="412.0" mnemonicParsing="false" onAction="#onClick" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #2B3F63;" stylesheets="@css/WhatWeb.css" text="Eguneratu" textFill="WHITE">
          <cursor>
@@ -20,6 +20,6 @@
          </font>
       </Label>
       <FontAwesomeIconView glyphName="SEARCH" layoutX="227.0" layoutY="74.0" size="18.0" textAlignment="CENTER" />
-      <ListView fx:id="listHistoriala" layoutX="227.0" layoutY="95.0" prefHeight="298.0" prefWidth="290.0" style="-fx-border-color: #2B3F63;" />
+      <ListView fx:id="listHistoriala" layoutX="227.0" layoutY="95.0" onMouseClicked="#onClickListHistoriala" prefHeight="298.0" prefWidth="290.0" style="-fx-border-color: #2B3F63;" />
    </children>
 </AnchorPane>

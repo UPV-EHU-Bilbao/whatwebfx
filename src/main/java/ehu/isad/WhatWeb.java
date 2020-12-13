@@ -57,6 +57,7 @@ public class WhatWeb extends Application {
         this.mainErakutsi();
         cmsKud.gaituTaulaEventFilter();
         cmsKud.gaituTxtURLEventFilter();
+        serverKud.gaituListHistorialaEventFilter();
         whatwebKud.gaituTxtURLEventFilter();
     }
 
@@ -138,6 +139,11 @@ public class WhatWeb extends Application {
 
     public void desaktibatuWhatWeb() {
         whatwebKud.desaktibatuWhatWeb();
+    }
+
+    public void urlEguneratu(String selectedItem) {
+        mainKud.erakutsiWhatWeb();
+        whatwebKud.urlEguneratu(selectedItem);
     }
 
     public static boolean inHierarchy(Node node, Node potentialHierarchyElement) {
