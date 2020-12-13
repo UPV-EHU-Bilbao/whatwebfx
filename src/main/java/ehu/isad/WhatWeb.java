@@ -25,7 +25,7 @@ public class WhatWeb extends Application {
     private Parent serverUI;
     private Parent whatwebUI;
 
-    private Stage stage;
+    private static Stage stage;
 
     private MainKud mainKud;
     private CMSKud cmsKud;
@@ -37,6 +37,10 @@ public class WhatWeb extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 
     @Override

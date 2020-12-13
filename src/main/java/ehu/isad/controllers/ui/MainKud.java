@@ -1,6 +1,7 @@
 package ehu.isad.controllers.ui;
 
 //import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import ehu.isad.WhatWeb;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -101,6 +102,11 @@ public class MainKud implements Initializable {
     @FXML
     void onClickItxi(MouseEvent event) {
         System.exit(0);
+    }
+
+    @FXML
+    void onClickMinimizatu(MouseEvent event) {
+        WhatWeb.getStage().setIconified(true);
     }
 
     @FXML
