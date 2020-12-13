@@ -63,7 +63,7 @@ public class WhatWeb extends Application {
     private void mainErakutsi() throws IOException {
         this.pantailakKargatu();
 
-        //Leihoa mugitu ahal izateko
+        //Leihoa mugitu ahal izateko a
         mainUI.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
