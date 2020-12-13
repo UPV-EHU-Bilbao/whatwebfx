@@ -35,9 +35,6 @@ public class MainKud implements Initializable {
     @FXML
     private Button btnWhatWeb;
 
-    /*@FXML
-    private FontAwesomeIconView btnItxi;*/
-
     @FXML
     private Pane pnlInfo;
 
@@ -95,19 +92,8 @@ public class MainKud implements Initializable {
         WhatWeb.getStage().setIconified(true);
     }
 
-    @FXML
-    void onSartuItxi(MouseEvent event) {
-        //btnItxi.setFill(Color.rgb(255, 0, 0));
-    }
-
-    @FXML
-    void onAteraItxi(MouseEvent event) {
-        //btnItxi.setFill(Color.rgb(134, 131, 131));
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO Momentuz ez da beharrezkoa ezer sartzea metodo honetan
         //hasieran bakarrik cmsPane ikusteko
         paneServer.setVisible(false);
         paneWhatWeb.setVisible(false);

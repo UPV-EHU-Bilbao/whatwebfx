@@ -68,11 +68,11 @@
             </Button>
          </children>
       </VBox>
-      <FontAwesomeIconView fx:id="btnItxi" fill="#868383" glyphName="CLOSE" layoutX="978.0" layoutY="20.0" onMouseClicked="#onClickItxi" onMouseEntered="#onSartuItxi" onMouseExited="#onAteraItxi" size="20">
+      <FontAwesomeIconView fill="#868383" glyphName="CLOSE" layoutX="978.0" layoutY="20.0" onMouseClicked="#onClickItxi" size="20">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></FontAwesomeIconView>
-      <FontAwesomeIconView fx:id="btnMinimizatu" fill="#868383" glyphName="WINDOW_MINIMIZE" layoutX="950.0" layoutY="20.0" onMouseClicked="#onClickMinimizatu" size="16">
+      <FontAwesomeIconView fill="#868383" glyphName="WINDOW_MINIMIZE" layoutX="950.0" layoutY="20.0" onMouseClicked="#onClickMinimizatu" size="16">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

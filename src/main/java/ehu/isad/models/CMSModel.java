@@ -7,8 +7,7 @@ public class CMSModel {
     private final String url;
     private final String cms;
     private final String version;
-    private String lastUpdated; //TODO Model bat egin daiteke atributu honetarako
-    private Button update;
+    private String lastUpdated;
 
     public CMSModel(String pUrl, String pCms, String pVersion, String pLastUpdated) {
         this.url = pUrl;

@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -23,7 +22,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class WhatWebKud implements Initializable {
 
@@ -72,8 +70,7 @@ public class WhatWebKud implements Initializable {
 
     @FXML
     void onKeyTyped(KeyEvent event) {
-        if (txtURL.getText().equals("")) btnScan.setDisable(true);
-        else btnScan.setDisable(false);
+        btnScan.setDisable(txtURL.getText().equals(""));
     }
 
     private void urlEskaneatu() {
@@ -83,9 +80,7 @@ public class WhatWebKud implements Initializable {
         Thread haria = new Thread( () -> {
             String newLine = System.getProperty("line.separator");
             final StringBuilder emaitza = new StringBuilder();
-            allProcesses().forEach(line -> {
-                emaitza.append(line + newLine);
-            });
+            allProcesses().forEach(line -> emaitza.append(line).append(newLine));
             Platform.runLater( () -> {
                 txtLog.setText(emaitza.toString());
                 if (!txtLog.getText().isBlank()) {
@@ -105,7 +100,7 @@ public class WhatWebKud implements Initializable {
     }
 
     public List<String> allProcesses() {
-        List<String> processes = new LinkedList<String>();
+        List<String> processes = new LinkedList<>();
         try {
             String line;
             Process p = null;

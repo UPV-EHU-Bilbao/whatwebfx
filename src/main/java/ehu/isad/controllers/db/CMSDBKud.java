@@ -2,15 +2,9 @@ package ehu.isad.controllers.db;
 
 import ehu.isad.models.CMSModel;
 
-import java.sql.Array;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CMSDBKud {
 
@@ -45,8 +39,8 @@ public class CMSDBKud {
                     String lastUpdated = x.get(2);
                     query = "select s.plugin_id,s.version from scans s,plugins p where target_id=" + idTarget;
                     rs = DBKud.getDBKud().execSQL(query);
-                    String cms = "";
-                    String version = "";
+                    String cms;
+                    String version;
                     ArrayList<Integer> idPluginZerr = new ArrayList<>();
                     ArrayList<String> versionZerr = new ArrayList<>();
                     while (rs.next()) {
@@ -108,7 +102,6 @@ public class CMSDBKud {
 
     public void eguneratuUrl(String urlZaharra, String urlBerria) {
         String query = "UPDATE targets SET target='" + urlBerria + "' WHERE target='" + urlZaharra + "'";
-        System.out.println(query);
         DBKud.getDBKud().execSQL(query);
         eguneratuLastUpdated(urlBerria);
     }

@@ -3,7 +3,6 @@
  */
 package ehu.isad;
 
-import ehu.isad.controllers.db.WhatWebDBKud;
 import ehu.isad.controllers.ui.CMSKud;
 import ehu.isad.controllers.ui.MainKud;
 import ehu.isad.controllers.ui.ServerKud;

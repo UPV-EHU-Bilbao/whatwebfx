@@ -2,7 +2,6 @@ package ehu.isad.controllers.ui;
 
 import ehu.isad.WhatWeb;
 import ehu.isad.controllers.db.CMSDBKud;
-import ehu.isad.controllers.db.DBKud;
 import ehu.isad.models.CMSModel;
 import ehu.isad.utils.Propietateak;
 import javafx.application.Platform;
@@ -14,10 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -71,7 +68,6 @@ public class CMSKud implements Initializable {
     private Button btnEguneratu;
 
     private String scanUrl;
-    private String cmbCMSBalio;
     private String whatwebpath;
     private ArrayList<CMSModel> cmsZerr;
     private ObservableList<CMSModel> cmsZerrObs;
@@ -84,7 +80,6 @@ public class CMSKud implements Initializable {
     void onClick(ActionEvent event) {
         if (!txtUrl.getText().equals("")) {
             scanUrl = txtUrl.getText();
-            cmbCMSBalio = cmbCMS.getSelectionModel().getSelectedItem();
             urlEskaneatu();
         }
     }
@@ -152,27 +147,21 @@ public class CMSKud implements Initializable {
         version.setCellValueFactory(new PropertyValueFactory<>("Version"));
         lastUpdated.setCellValueFactory(new PropertyValueFactory<>("LastUpdated"));
 
-        tbCMS.setRowFactory(new Callback<TableView<CMSModel>, TableRow<CMSModel>>() {
-            @Override
-            public TableRow<CMSModel> call(TableView<CMSModel> tbCMS2) {
-                final TableRow<CMSModel> errenkada = new TableRow<>();
-                errenkada.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        final int index = errenkada.getIndex();
-                        if (index >= 0 && index < tbCMS.getItems().size() && tbCMS.getSelectionModel().isSelected(index)  ) {
-                            tbCMS.getSelectionModel().clearSelection();
-                            btnEzabatu.setDisable(true);
-                            btnEguneratu.setDisable(true);
-                            event.consume();
-                        } else {
-                            btnEzabatu.setDisable(true);
-                            btnEguneratu.setDisable(true);
-                        }
-                    }
-                });
-                return errenkada;
-            }
+        tbCMS.setRowFactory(tbCMS2 -> {
+            final TableRow<CMSModel> errenkada = new TableRow<>();
+            errenkada.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+                final int index = errenkada.getIndex();
+                if (index >= 0 && index < tbCMS.getItems().size() && tbCMS.getSelectionModel().isSelected(index)  ) {
+                    tbCMS.getSelectionModel().clearSelection();
+                    btnEzabatu.setDisable(true);
+                    btnEguneratu.setDisable(true);
+                    event.consume();
+                } else {
+                    btnEzabatu.setDisable(true);
+                    btnEguneratu.setDisable(true);
+                }
+            });
+            return errenkada;
         });
 
         cmsTaulaSortu();
@@ -236,13 +225,10 @@ public class CMSKud implements Initializable {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (cmsModel.getURL().toLowerCase().indexOf(lowerCaseFilter) != -1 && cmsModel.getCMS().toLowerCase().indexOf(cmbCMS.getValue().toLowerCase()) != -1) {
+                if (cmsModel.getURL().toLowerCase().contains(lowerCaseFilter) && cmsModel.getCMS().toLowerCase().contains(cmbCMS.getValue().toLowerCase())) {
                     return true;
                 }
-                else if (cmsModel.getLastUpdated().toLowerCase().indexOf(lowerCaseFilter)!= -1 && cmsModel.getCMS().toLowerCase().indexOf(cmbCMS.getValue().toLowerCase()) != -1)
-                    return true;
-                else
-                    return false;
+                else return cmsModel.getLastUpdated().toLowerCase().contains(lowerCaseFilter) && cmsModel.getCMS().toLowerCase().contains(cmbCMS.getValue().toLowerCase());
             });
             eguneratuCmsKop();
         });
@@ -253,10 +239,7 @@ public class CMSKud implements Initializable {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (cmsModel.getCMS().toLowerCase().indexOf(lowerCaseFilter) != -1 && (cmsModel.getURL().toLowerCase().indexOf(txtUrl.getText().toLowerCase()) != -1 || cmsModel.getLastUpdated().toLowerCase().indexOf(txtUrl.getText().toLowerCase()) != -1)) {
-                    return true;
-                } else
-                    return false;
+                return cmsModel.getCMS().toLowerCase().contains(lowerCaseFilter) && (cmsModel.getURL().toLowerCase().contains(txtUrl.getText().toLowerCase()) || cmsModel.getLastUpdated().toLowerCase().contains(txtUrl.getText().toLowerCase()));
             });
             eguneratuCmsKop();
         }));
@@ -283,19 +266,10 @@ public class CMSKud implements Initializable {
                                     emaitza200 = true;
                                 } else if (lerroa.contains("INSERT IGNORE INTO request_configs")) {
                                     lerroa = lerroa.replace("IGNORE", "OR IGNORE");
-                                    System.out.println(lerroa);
                                     CMSDBKud.getDBKud().sartuLerroa(lerroa);
                                 }
                             }
-                            if (emaitza200) {
-                                if (lerroa.contains("INSERT IGNORE INTO targets (status,target) VALUES ('") && !lerroa.contains("INSERT IGNORE INTO targets (status,target) VALUES ('200'")) {
-                                    emaitza200 = false;
-                                } else {
-                                    lerroa = lerroa.replace("IGNORE", "OR IGNORE");
-                                    System.out.println(lerroa);
-                                    CMSDBKud.getDBKud().sartuLerroa(lerroa);
-                                }
-                            }
+                            emaitza200 = isEmaitza200(lerroa, emaitza200);
                         }
                         br.close();
                         f.delete();
@@ -318,7 +292,7 @@ public class CMSKud implements Initializable {
             allProcesses();
             Platform.runLater( () -> {
                 try {
-                    String lerroa = "";
+                    String lerroa;
                     File f = new File("scanInfo.sql");
                     if (f.exists() && f.isFile()) {
                         FileReader fr = new FileReader("scanInfo.sql");
@@ -334,19 +308,10 @@ public class CMSKud implements Initializable {
                                     CMSDBKud.getDBKud().ezabatuScanZaharra(urlBerria);
                                 } else if (lerroa.contains("INSERT IGNORE INTO request_configs")) {
                                     lerroa = lerroa.replace("IGNORE", "OR IGNORE");
-                                    System.out.println(lerroa);
                                     CMSDBKud.getDBKud().sartuLerroa(lerroa);
                                 }
                             }
-                            if (emaitza200) {
-                                if (lerroa.contains("INSERT IGNORE INTO targets (status,target) VALUES ('") && !lerroa.contains("INSERT IGNORE INTO targets (status,target) VALUES ('200'")) {
-                                    emaitza200 = false;
-                                    } else {
-                                    lerroa = lerroa.replace("IGNORE", "OR IGNORE");
-                                    System.out.println(lerroa);
-                                    CMSDBKud.getDBKud().sartuLerroa(lerroa);
-                                }
-                            }
+                            emaitza200 = isEmaitza200(lerroa, emaitza200);
                         }
                         br.close();
                         f.delete();
@@ -363,15 +328,26 @@ public class CMSKud implements Initializable {
         haria.start();
     }
 
+    private boolean isEmaitza200(String lerroa, boolean emaitza200) {
+        if (emaitza200) {
+            if (lerroa.contains("INSERT IGNORE INTO targets (status,target) VALUES ('") && !lerroa.contains("INSERT IGNORE INTO targets (status,target) VALUES ('200'")) {
+                emaitza200 = false;
+                } else {
+                lerroa = lerroa.replace("IGNORE", "OR IGNORE");
+                CMSDBKud.getDBKud().sartuLerroa(lerroa);
+            }
+        }
+        return emaitza200;
+    }
+
     private void garbituFiltroak() {
         txtUrl.clear();
         cmbCMS.getSelectionModel().selectFirst();
     }
 
     private void allProcesses() {
-        List<String> processes = new LinkedList<String>();
         try {
-            Process p = null;
+            Process p;
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 p = Runtime.getRuntime().exec("wsl " + whatwebpath + "whatweb --log-sql=scanInfo.sql " + scanUrl);
             } else {

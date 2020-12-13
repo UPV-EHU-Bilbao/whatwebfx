@@ -1,6 +1,5 @@
 package ehu.isad.controllers.db;
 
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
