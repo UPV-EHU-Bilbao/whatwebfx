@@ -1,5 +1,6 @@
 package ehu.isad.controllers.ui;
 
+import ehu.isad.WhatWeb;
 import ehu.isad.controllers.db.WhatWebDBKud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,15 +15,23 @@ import java.util.ResourceBundle;
 
 public class ServerKud implements Initializable {
 
+    private WhatWeb mainApp;
+
     @FXML
     private Button btnEguneratu;
 
     @FXML
     private ListView<String> listHistoriala;
 
+    public ServerKud(WhatWeb main) {
+        mainApp = main;
+    }
+
     @FXML
     void onClick(ActionEvent event) {
+        desaktibatuFuntzionalitateak();
         eguneratu();
+        aktibatuFuntzionalitateak();
     }
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -33,5 +42,25 @@ public class ServerKud implements Initializable {
         ArrayList<String> urlList = WhatWebDBKud.getWhatWebDBKud().lortuUrl();
         listHistoriala.getItems().clear();
         listHistoriala.getItems().addAll(urlList);
+    }
+
+    private void aktibatuFuntzionalitateak() {
+        aktibatuServer();
+        mainApp.aktibatuCMS();
+        mainApp.aktibatuWhatWeb();
+    }
+
+    public void aktibatuServer() {
+        btnEguneratu.setDisable(false);
+    }
+
+    private void desaktibatuFuntzionalitateak() {
+        desaktibatuServer();
+        mainApp.desaktibatuCMS();
+        mainApp.desaktibatuWhatWeb();
+    }
+
+    public void desaktibatuServer() {
+        btnEguneratu.setDisable(true);
     }
 }

@@ -1,5 +1,6 @@
 package ehu.isad.controllers.ui;
 
+import ehu.isad.WhatWeb;
 import ehu.isad.controllers.db.CMSDBKud;
 import ehu.isad.controllers.db.DBKud;
 import ehu.isad.models.CMSModel;
@@ -12,6 +13,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputEvent;
@@ -25,6 +27,8 @@ import java.net.URL;
 import java.util.*;
 
 public class CMSKud implements Initializable {
+
+    private WhatWeb mainApp;
 
     @FXML
     private TableView<CMSModel> tbCMS;
@@ -65,6 +69,10 @@ public class CMSKud implements Initializable {
     private ArrayList<CMSModel> cmsZerr;
     private ObservableList<CMSModel> cmsZerrObs;
 
+    public CMSKud(WhatWeb main) {
+        mainApp = main;
+    }
+
     @FXML
     void onClick(ActionEvent event) {
         if (!txtUrl.getText().equals("")) {
@@ -85,11 +93,11 @@ public class CMSKud implements Initializable {
     @FXML
     void onCllickEzabatu(ActionEvent event) {
         if (tbCMS.getSelectionModel().getSelectedItem() != null) {
-            desaktibatuCMS();
+            desaktibatuFuntzionalitateak();
             CMSDBKud.getDBKud().ezabatuKontsulta(tbCMS.getSelectionModel().getSelectedItem().getURL());
             cmsTaulaSortu();
             eguneratuCmsKop();
-            aktibatuCMS();
+            aktibatuFuntzionalitateak();
             garbituFiltroak();
         }
     }
@@ -234,7 +242,7 @@ public class CMSKud implements Initializable {
                     CMSDBKud.getDBKud().eguneratuLastUpdated(scanUrl);
                     cmsTaulaSortu();
                     sortuFiltroa();
-                    aktibatuCMS();
+                    aktibatuFuntzionalitateak();
                     garbituFiltroak();
                 } catch (Exception err) {
                     err.printStackTrace();
@@ -284,7 +292,7 @@ public class CMSKud implements Initializable {
                     }
                     cmsTaulaSortu();
                     sortuFiltroa();
-                    aktibatuCMS();
+                    aktibatuFuntzionalitateak();
                     garbituFiltroak();
                 } catch (Exception err) {
                     err.printStackTrace();
@@ -308,14 +316,20 @@ public class CMSKud implements Initializable {
             } else {
                 p = Runtime.getRuntime().exec(whatwebpath + "whatweb --log-sql=scanInfo.sql " + scanUrl);
             }
-            desaktibatuCMS();
+            desaktibatuFuntzionalitateak();
             while (p.isAlive());
         } catch (Exception err) {
             err.printStackTrace();
         }
     }
 
-    private void aktibatuCMS() {
+    private void aktibatuFuntzionalitateak() {
+        aktibatuCMS();
+        mainApp.aktibatuServer();
+        mainApp.aktibatuWhatWeb();
+    }
+
+    public void aktibatuCMS() {
         txtUrl.setDisable(false);
         txtUrl.setEditable(true);
         cmbCMS.setDisable(false);
@@ -324,7 +338,13 @@ public class CMSKud implements Initializable {
         btnEguneratu.setDisable(false);
     }
 
-    private void desaktibatuCMS() {
+    private void desaktibatuFuntzionalitateak() {
+        desaktibatuCMS();
+        mainApp.desaktibatuServer();
+        mainApp.desaktibatuWhatWeb();
+    }
+
+    public void desaktibatuCMS() {
         txtUrl.setDisable(true);
         cmbCMS.setDisable(true);
         btnAddURL.setDisable(true);

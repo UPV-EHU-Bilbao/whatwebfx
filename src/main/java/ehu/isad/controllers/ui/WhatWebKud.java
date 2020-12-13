@@ -38,7 +38,7 @@ public class WhatWebKud implements Initializable {
     private String url;
     private String whatwebpath;
 
-    public void setMainApp(WhatWeb main) {
+    public WhatWebKud(WhatWeb main) {
         mainApp = main;
     }
 
@@ -73,6 +73,7 @@ public class WhatWebKud implements Initializable {
                     }
                     mainApp.serverPantailaEguneratu();
                 }
+                aktibatuFuntzionalitateak();
                 txtURL.clear();
                 txtURL.setEditable(true);
             });
@@ -90,6 +91,7 @@ public class WhatWebKud implements Initializable {
             } else {
                 p = Runtime.getRuntime().exec(whatwebpath + "whatweb --colour=never " + url);
             }
+            desaktibatuFuntzionalitateak();
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
@@ -106,5 +108,28 @@ public class WhatWebKud implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Properties properties = Propietateak.lortuEzarpenak();
         whatwebpath = properties.getProperty("whatwebpath");
+    }
+
+    private void aktibatuFuntzionalitateak() {
+        aktibatuWhatWeb();
+        mainApp.aktibatuCMS();
+        mainApp.aktibatuServer();
+    }
+
+    public void aktibatuWhatWeb() {
+        txtURL.setDisable(false);
+        txtURL.setEditable(true);
+        btnScan.setDisable(false);
+    }
+
+    private void desaktibatuFuntzionalitateak() {
+        desaktibatuWhatWeb();
+        mainApp.desaktibatuCMS();
+        mainApp.desaktibatuServer();
+    }
+
+    public void desaktibatuWhatWeb() {
+        txtURL.setDisable(true);
+        btnScan.setDisable(true);
     }
 }

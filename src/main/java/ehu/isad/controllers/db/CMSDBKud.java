@@ -108,6 +108,7 @@ public class CMSDBKud {
 
     public void eguneratuUrl(String urlZaharra, String urlBerria) {
         String query = "UPDATE targets SET target='" + urlBerria + "' WHERE target='" + urlZaharra + "'";
+        System.out.println(query);
         DBKud.getDBKud().execSQL(query);
         eguneratuLastUpdated(urlBerria);
     }

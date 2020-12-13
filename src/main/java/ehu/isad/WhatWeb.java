@@ -74,10 +74,9 @@ public class WhatWeb extends Application {
         //Hau ez dakit zertarako egin behar den
         mainKud = new MainKud(/*this*/);
 
-        cmsKud = new CMSKud();
-        serverKud = new ServerKud();
-        whatwebKud = new WhatWebKud();
-        whatwebKud.setMainApp(this);
+        cmsKud = new CMSKud(this);
+        serverKud = new ServerKud(this);
+        whatwebKud = new WhatWebKud(this);
 
         Callback<Class<?>, Object> controllerFactory = type -> {
             if (type == MainKud.class) {
@@ -105,5 +104,29 @@ public class WhatWeb extends Application {
 
     public void serverPantailaEguneratu() {
         serverKud.eguneratu();
+    }
+
+    public void aktibatuCMS() {
+        cmsKud.aktibatuCMS();
+    }
+
+    public void aktibatuServer() {
+        serverKud.aktibatuServer();
+    }
+
+    public void aktibatuWhatWeb() {
+        whatwebKud.aktibatuWhatWeb();
+    }
+
+    public void desaktibatuCMS() {
+        cmsKud.desaktibatuCMS();
+    }
+
+    public void desaktibatuServer() {
+        serverKud.desaktibatuServer();
+    }
+
+    public void desaktibatuWhatWeb() {
+        whatwebKud.desaktibatuWhatWeb();
     }
 }
