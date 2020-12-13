@@ -32,7 +32,7 @@
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="723.0" spacing="15.0">
                <children>
                   <FontAwesomeIconView fill="#2a1c42" glyphName="SEARCH" size="20.0" />
-                  <TextField fx:id="txtUrl" onKeyPressed="#onIntro" onKeyTyped="#onKeyTyped" prefHeight="26.0" prefWidth="408.0" style="-fx-border-color: #2A1C42; -fx-background-color: #e8ddff; -fx-font: #7156DD;" stylesheets="@css/WhatWeb.css" />
+                  <TextField fx:id="txtUrl" onKeyPressed="#onIntro" onKeyTyped="#onKeyTyped" prefHeight="26.0" prefWidth="408.0" style="-fx-border-color: #2A1C42; -fx-background-color: #e8ddff;" stylesheets="@css/WhatWeb.css" />
                   <ComboBox fx:id="cmbCMS" prefHeight="26.0" prefWidth="264.0" style="-fx-background-color: #e8ddff; -fx-border-color: #2A1C42;" stylesheets="@css/WhatWeb.css" />
                   <Button fx:id="btnAddURL" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="200.0" stylesheets="@css/WhatWeb.css" text="Add URL" textFill="WHITE">
                      <graphic>
@@ -47,7 +47,7 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </HBox>
-            <TableView fx:id="tbCMS" prefHeight="360.0" prefWidth="723.0" stylesheets="@css/WhatWeb.css" GridPane.rowIndex="1">
+            <TableView fx:id="tbCMS" prefHeight="360.0" prefWidth="723.0" style="-fx-border-color: #2A1C42;" stylesheets="@css/WhatWeb.css" GridPane.rowIndex="1">
               <columns>
                 <TableColumn fx:id="url" prefWidth="75.0" text="URL" />
                 <TableColumn fx:id="cms" prefWidth="75.0" text="CMS" />

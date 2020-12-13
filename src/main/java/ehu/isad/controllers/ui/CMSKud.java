@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -19,6 +20,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -131,6 +134,19 @@ public class CMSKud implements Initializable {
         return dago;
     }
 
+    public static boolean inHierarchy(Node node, Node potentialHierarchyElement) {
+        if (potentialHierarchyElement == null) {
+            return true;
+        }
+        while (node != null) {
+            if (node == potentialHierarchyElement) {
+                return true;
+            }
+            node = node.getParent();
+        }
+        return false;
+    }
+
     public void initialize(URL location, ResourceBundle resources) {
         Properties properties = Propietateak.lortuEzarpenak();
         whatwebpath = properties.getProperty("whatwebpath");
@@ -139,6 +155,29 @@ public class CMSKud implements Initializable {
         cms.setCellValueFactory(new PropertyValueFactory<>("CMS"));
         version.setCellValueFactory(new PropertyValueFactory<>("Version"));
         lastUpdated.setCellValueFactory(new PropertyValueFactory<>("LastUpdated"));
+
+        tbCMS.setRowFactory(new Callback<TableView<CMSModel>, TableRow<CMSModel>>() {
+            @Override
+            public TableRow<CMSModel> call(TableView<CMSModel> tbCMS2) {
+                final TableRow<CMSModel> errenkada = new TableRow<>();
+                errenkada.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        final int index = errenkada.getIndex();
+                        if (index >= 0 && index < tbCMS.getItems().size() && tbCMS.getSelectionModel().isSelected(index)  ) {
+                            tbCMS.getSelectionModel().clearSelection();
+                            btnEzabatu.setDisable(true);
+                            btnEguneratu.setDisable(true);
+                            event.consume();
+                        } else {
+                            btnEzabatu.setDisable(true);
+                            btnEguneratu.setDisable(true);
+                        }
+                    }
+                });
+                return errenkada;
+            }
+        });
 
         cmsTaulaSortu();
         eguneratuCmsKop();
@@ -152,14 +191,30 @@ public class CMSKud implements Initializable {
         cmbCMS.getSelectionModel().selectFirst();
 
         btnAddURL.setDisable(true);
+        btnEzabatu.setDisable(true);
+        btnEguneratu.setDisable(true);
 
         sortuFiltroa();
+    }
+
+    public void gaituTaulaEventFilter() {
+        WhatWeb.getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, evt -> {
+            if (!inHierarchy(evt.getPickResult().getIntersectedNode(), tbCMS)) {
+                tbCMS.getSelectionModel().clearSelection();
+                btnEzabatu.setDisable(true);
+                btnEguneratu.setDisable(true);
+            }
+        });
     }
 
     private void cmsTaulaSortu() {
         cmsZerr = CMSDBKud.getDBKud().getCMSModel();
         cmsZerrObs = FXCollections.observableArrayList(cmsZerr);
         tbCMS.setItems(cmsZerrObs);
+        tbCMS.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            btnEzabatu.setDisable(false);
+            btnEguneratu.setDisable(false);
+        });
     }
 
     private void eguneratuCmsKop() {
@@ -334,8 +389,6 @@ public class CMSKud implements Initializable {
         txtUrl.setEditable(true);
         cmbCMS.setDisable(false);
         btnAddURL.setDisable(false);
-        btnEzabatu.setDisable(false);
-        btnEguneratu.setDisable(false);
     }
 
     private void desaktibatuFuntzionalitateak() {

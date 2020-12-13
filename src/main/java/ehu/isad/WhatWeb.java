@@ -26,6 +26,7 @@ public class WhatWeb extends Application {
     private Parent whatwebUI;
 
     private static Stage stage;
+    private static Scene scene;
 
     private MainKud mainKud;
     private CMSKud cmsKud;
@@ -43,12 +44,17 @@ public class WhatWeb extends Application {
         return stage;
     }
 
+    public static Scene getScene() {
+        return scene;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         this.mainErakutsi();
+        cmsKud.gaituTaulaEventFilter();
     }
 
     private void mainErakutsi() throws IOException {
@@ -64,7 +70,8 @@ public class WhatWeb extends Application {
             stage.setY(event.getScreenY() - yOffset);
         });
 
-        stage.setScene(new Scene(mainUI));
+        scene = new Scene(mainUI);
+        stage.setScene(scene);
         stage.show();
     }
 
