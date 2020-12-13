@@ -58,6 +58,9 @@ public class WhatWeb extends Application {
         cmsKud.gaituTxtURLEventFilter();
         serverKud.gaituListHistorialaEventFilter();
         whatwebKud.gaituTxtURLEventFilter();
+        if (true) {
+            System.out.println("kljxww");
+        }
     }
 
     private void mainErakutsi() throws IOException {
