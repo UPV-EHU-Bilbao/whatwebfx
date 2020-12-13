@@ -56,6 +56,7 @@ public class WhatWeb extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         this.mainErakutsi();
         cmsKud.gaituTaulaEventFilter();
+        cmsKud.gaituTxtURLEventFilter();
         whatwebKud.gaituTxtURLEventFilter();
     }
 

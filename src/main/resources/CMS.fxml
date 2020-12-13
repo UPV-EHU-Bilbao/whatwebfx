@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="488.0" maxWidth="744.0" prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.CMSKud">
+<AnchorPane fx:id="panela" maxHeight="488.0" maxWidth="744.0" prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.CMSKud">
    <children>
       <GridPane layoutX="8.0" layoutY="11.0" prefHeight="466.0" prefWidth="723.0">
         <columnConstraints>
@@ -47,7 +47,7 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </HBox>
-            <TableView fx:id="tbCMS" prefHeight="360.0" prefWidth="723.0" style="-fx-border-color: #2A1C42;" stylesheets="@css/WhatWeb.css" GridPane.rowIndex="1">
+            <TableView fx:id="tbCMS" onMouseClicked="#onClickTaula" prefHeight="360.0" prefWidth="723.0" style="-fx-border-color: #2A1C42;" stylesheets="@css/WhatWeb.css" GridPane.rowIndex="1">
               <columns>
                 <TableColumn fx:id="url" prefWidth="75.0" text="URL" />
                 <TableColumn fx:id="cms" prefWidth="75.0" text="CMS" />

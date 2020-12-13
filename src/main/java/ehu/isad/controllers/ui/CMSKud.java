@@ -21,6 +21,7 @@ import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 import java.io.BufferedReader;
@@ -32,6 +33,9 @@ import java.util.*;
 public class CMSKud implements Initializable {
 
     private WhatWeb mainApp;
+
+    @FXML
+    private AnchorPane panela;
 
     @FXML
     private TableView<CMSModel> tbCMS;
@@ -83,6 +87,11 @@ public class CMSKud implements Initializable {
             cmbCMSBalio = cmbCMS.getSelectionModel().getSelectedItem();
             urlEskaneatu();
         }
+    }
+
+    @FXML
+    void onClickTaula(MouseEvent event) {
+        tbCMS.requestFocus();
     }
 
     @FXML
@@ -190,6 +199,14 @@ public class CMSKud implements Initializable {
                 tbCMS.getSelectionModel().clearSelection();
                 btnEzabatu.setDisable(true);
                 btnEguneratu.setDisable(true);
+            }
+        });
+    }
+
+    public void gaituTxtURLEventFilter() {
+        WhatWeb.getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, evt -> {
+            if (!WhatWeb.inHierarchy(evt.getPickResult().getIntersectedNode(), txtUrl)) {
+                panela.requestFocus();
             }
         });
     }
