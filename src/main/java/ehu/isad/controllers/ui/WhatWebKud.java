@@ -50,10 +50,16 @@ public class WhatWebKud implements Initializable {
 
     @FXML
     void onIntro(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
+        if (event.getCode().equals(KeyCode.ENTER) && !btnScan.isDisabled()) {
             url = txtURL.getText();
             urlEskaneatu();
         }
+    }
+
+    @FXML
+    void onKeyTyped(KeyEvent event) {
+        if (txtURL.getText().equals("")) btnScan.setDisable(true);
+        else btnScan.setDisable(false);
     }
 
     private void urlEskaneatu() {
@@ -108,6 +114,7 @@ public class WhatWebKud implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Properties properties = Propietateak.lortuEzarpenak();
         whatwebpath = properties.getProperty("whatwebpath");
+        btnScan.setDisable(true);
     }
 
     private void aktibatuFuntzionalitateak() {
@@ -119,7 +126,7 @@ public class WhatWebKud implements Initializable {
     public void aktibatuWhatWeb() {
         txtURL.setDisable(false);
         txtURL.setEditable(true);
-        btnScan.setDisable(false);
+        btnScan.setDisable(txtURL.getText().equals(""));
     }
 
     private void desaktibatuFuntzionalitateak() {
