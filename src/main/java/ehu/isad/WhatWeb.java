@@ -10,6 +10,7 @@ import ehu.isad.controllers.ui.ServerKud;
 import ehu.isad.controllers.ui.WhatWebKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -55,6 +56,7 @@ public class WhatWeb extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         this.mainErakutsi();
         cmsKud.gaituTaulaEventFilter();
+        whatwebKud.gaituTxtURLEventFilter();
     }
 
     private void mainErakutsi() throws IOException {
@@ -135,5 +137,18 @@ public class WhatWeb extends Application {
 
     public void desaktibatuWhatWeb() {
         whatwebKud.desaktibatuWhatWeb();
+    }
+
+    public static boolean inHierarchy(Node node, Node potentialHierarchyElement) {
+        if (potentialHierarchyElement == null) {
+            return true;
+        }
+        while (node != null) {
+            if (node == potentialHierarchyElement) {
+                return true;
+            }
+            node = node.getParent();
+        }
+        return false;
     }
 }

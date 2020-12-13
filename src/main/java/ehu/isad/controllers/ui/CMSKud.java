@@ -134,19 +134,6 @@ public class CMSKud implements Initializable {
         return dago;
     }
 
-    public static boolean inHierarchy(Node node, Node potentialHierarchyElement) {
-        if (potentialHierarchyElement == null) {
-            return true;
-        }
-        while (node != null) {
-            if (node == potentialHierarchyElement) {
-                return true;
-            }
-            node = node.getParent();
-        }
-        return false;
-    }
-
     public void initialize(URL location, ResourceBundle resources) {
         Properties properties = Propietateak.lortuEzarpenak();
         whatwebpath = properties.getProperty("whatwebpath");
@@ -199,7 +186,7 @@ public class CMSKud implements Initializable {
 
     public void gaituTaulaEventFilter() {
         WhatWeb.getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, evt -> {
-            if (!inHierarchy(evt.getPickResult().getIntersectedNode(), tbCMS)) {
+            if (!WhatWeb.inHierarchy(evt.getPickResult().getIntersectedNode(), tbCMS)) {
                 tbCMS.getSelectionModel().clearSelection();
                 btnEzabatu.setDisable(true);
                 btnEguneratu.setDisable(true);

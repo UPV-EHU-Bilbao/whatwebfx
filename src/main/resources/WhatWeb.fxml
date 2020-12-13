@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.WhatWebKud">
+<AnchorPane fx:id="panela" prefHeight="488.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.WhatWebKud">
    <children>
       <Text layoutX="92.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL:" />
       <Text layoutX="92.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log:" />
       <TextField fx:id="txtURL" layoutX="166.0" layoutY="84.0" onKeyPressed="#onIntro" onKeyTyped="#onKeyTyped" prefHeight="26.0" prefWidth="347.0" promptText="Idatzi URL bat" style="-fx-border-color: #2B633F; -fx-background-color: #DDFFE9FF;" stylesheets="@css/WhatWeb.css" />
-      <TextArea fx:id="txtLog" editable="false" layoutX="166.0" layoutY="123.0" prefHeight="302.0" prefWidth="468.0" style="-fx-border-color: #2B633F;" stylesheets="@css/WhatWeb.css" wrapText="true" />
+      <TextArea fx:id="txtLog" editable="false" layoutX="166.0" layoutY="123.0" onMouseClicked="#onClickTxtLog" prefHeight="302.0" prefWidth="468.0" style="-fx-border-color: #2B633F;" stylesheets="@css/WhatWeb.css" wrapText="true" />
       <Button fx:id="btnScan" layoutX="543.0" layoutY="83.0" mnemonicParsing="false" onAction="#onClick" prefHeight="16.0" prefWidth="79.0" style="-fx-background-color: #2B633F;" stylesheets="@css/WhatWeb.css" text="Scan" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />

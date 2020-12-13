@@ -7,11 +7,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -25,6 +28,9 @@ import java.util.stream.Collectors;
 public class WhatWebKud implements Initializable {
 
     private WhatWeb mainApp;
+
+    @FXML
+    private AnchorPane panela;
 
     @FXML
     private TextField txtURL;
@@ -46,6 +52,11 @@ public class WhatWebKud implements Initializable {
     void onClick(ActionEvent event) {
         url = txtURL.getText();
         urlEskaneatu();
+    }
+
+    @FXML
+    void onClickTxtLog(MouseEvent event) {
+        txtLog.requestFocus();
     }
 
     @FXML
@@ -115,6 +126,14 @@ public class WhatWebKud implements Initializable {
         Properties properties = Propietateak.lortuEzarpenak();
         whatwebpath = properties.getProperty("whatwebpath");
         btnScan.setDisable(true);
+    }
+
+    public void gaituTxtURLEventFilter() {
+        WhatWeb.getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, evt -> {
+            if (!WhatWeb.inHierarchy(evt.getPickResult().getIntersectedNode(), txtURL)) {
+                panela.requestFocus();
+            }
+        });
     }
 
     private void aktibatuFuntzionalitateak() {
