@@ -30,5 +30,6 @@ CREATE TABLE "request_configs" (
 );
 CREATE TABLE "server_historiala" (
                                      "url"	TEXT NOT NULL,
+                                     "last_updated"	DATETIME,
                                      PRIMARY KEY("url")
 );

@@ -15,19 +15,15 @@ public class WhatWebDBKud {
 
     private WhatWebDBKud() {}
 
-    public void sartuURL(String url) {
-        String query = "insert into server_historiala values('" + url + "')";
-        DBKud.getDBKud().execSQL(query);
-    }
-
     public ArrayList<String> lortuUrl() {
-        String query = "select url from server_historiala";
+        String query = "select url, last_updated from server_historiala";
         ResultSet rs = DBKud.getDBKud().execSQL(query);
         ArrayList<String> urlList = new ArrayList<>();
         if (rs != null) {
             try {
                 while (rs.next()) {
-                    urlList.add(rs.getString("url"));
+                    String emaitza = rs.getString("url") + " (" + rs.getString("last_updated") + ")";
+                    urlList.add(emaitza);
                 }
             } catch(SQLException throwables){
                 throwables.printStackTrace();
@@ -45,5 +41,15 @@ public class WhatWebDBKud {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    public void sartuURL(String url) {
+        String query = "insert into server_historiala values('" + url + "', (select strftime('%Y/%m/%d %H:%M:%S')))";
+        DBKud.getDBKud().execSQL(query);
+    }
+
+    public void eguneratuURL(String url) {
+        String query = "update server_historiala set last_updated=(select strftime('%Y/%m/%d %H:%M:%S')) where url ='" + url + "'";
+        DBKud.getDBKud().execSQL(query);
     }
 }

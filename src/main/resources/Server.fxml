@@ -20,6 +20,6 @@
          </font>
       </Label>
       <FontAwesomeIconView glyphName="SEARCH" layoutX="227.0" layoutY="74.0" size="18.0" textAlignment="CENTER" />
-      <ListView fx:id="listHistoriala" layoutX="227.0" layoutY="95.0" onMouseClicked="#onClickListHistoriala" prefHeight="298.0" prefWidth="290.0" style="-fx-border-color: #2B3F63;" />
+      <ListView fx:id="listHistoriala" layoutX="183.0" layoutY="95.0" onMouseClicked="#onClickListHistoriala" prefHeight="298.0" prefWidth="379.0" style="-fx-border-color: #2B3F63;" />
    </children>
 </AnchorPane>

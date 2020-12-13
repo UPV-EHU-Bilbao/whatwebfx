@@ -34,7 +34,8 @@ public class ServerKud implements Initializable {
 
     @FXML
     void onClick(ActionEvent event) {
-        mainApp.urlEguneratu(listHistoriala.getSelectionModel().getSelectedItem());
+        String url = listHistoriala.getSelectionModel().getSelectedItem().split(" \\(")[0];
+        mainApp.urlEguneratu(url);
     }
 
     @FXML
@@ -65,20 +66,8 @@ public class ServerKud implements Initializable {
         listHistoriala.getItems().addAll(urlList);
     }
 
-    private void aktibatuFuntzionalitateak() {
-        aktibatuServer();
-        mainApp.aktibatuCMS();
-        mainApp.aktibatuWhatWeb();
-    }
-
     public void aktibatuServer() {
         btnEguneratu.setDisable(false);
-    }
-
-    private void desaktibatuFuntzionalitateak() {
-        desaktibatuServer();
-        mainApp.desaktibatuCMS();
-        mainApp.desaktibatuWhatWeb();
     }
 
     public void desaktibatuServer() {
