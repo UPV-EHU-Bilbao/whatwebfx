@@ -178,6 +178,7 @@ public class CMSKud implements Initializable {
         btnAddURL.setDisable(true);
         btnEzabatu.setDisable(true);
         btnEguneratu.setDisable(true);
+        tbCMS.setEditable(false);
 
         sortuFiltroa();
     }
@@ -372,6 +373,7 @@ public class CMSKud implements Initializable {
         txtUrl.setEditable(true);
         cmbCMS.setDisable(false);
         btnAddURL.setDisable(false);
+        tbCMS.setDisable(false);
     }
 
     private void desaktibatuFuntzionalitateak() {
@@ -386,5 +388,6 @@ public class CMSKud implements Initializable {
         btnAddURL.setDisable(true);
         btnEzabatu.setDisable(true);
         btnEguneratu.setDisable(true);
+        tbCMS.setDisable(true);
     }
 }
