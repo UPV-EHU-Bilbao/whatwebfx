@@ -1,4 +1,4 @@
-# WhatWebFX
+# WhatwebFX
 
    2020/2021 urteko ISAD (Informazio Sistemen Analisia eta Diseinua) irakasgaian, zerotik hasitako talde lan edo 
 proiektu bat egin behar izan dugu. Hau, lehen lauhilekoan zehar landu dugu eta klasean emandako materiala eta aplikazioak
