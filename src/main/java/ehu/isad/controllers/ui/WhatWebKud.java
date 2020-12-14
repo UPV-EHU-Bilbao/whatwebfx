@@ -75,6 +75,7 @@ public class WhatWebKud implements Initializable {
 
     private void urlEskaneatu() {
         url = txtURL.getText();
+        txtLog.setDisable(true);
         txtLog.setText("Kargatzen. Itxaron, mesedez...");
         txtURL.setEditable(false);
         Thread haria = new Thread( () -> {
@@ -94,6 +95,8 @@ public class WhatWebKud implements Initializable {
                 txtURL.clear();
                 aktibatuFuntzionalitateak();
                 txtURL.setEditable(true);
+                txtLog.setDisable(txtLog.getText().equals(""));
+                txtURL.requestFocus();
             });
         });
         haria.start();
@@ -127,6 +130,7 @@ public class WhatWebKud implements Initializable {
         Properties properties = Propietateak.lortuEzarpenak();
         whatwebpath = properties.getProperty("whatwebpath");
         btnScan.setDisable(true);
+        txtLog.setDisable(true);
     }
 
     public void gaituTxtURLEventFilter() {
@@ -147,6 +151,7 @@ public class WhatWebKud implements Initializable {
         txtURL.setDisable(false);
         txtURL.setEditable(true);
         btnScan.setDisable(txtURL.getText().equals(""));
+        txtLog.setDisable(txtLog.getText().equals(""));
     }
 
     private void desaktibatuFuntzionalitateak() {
@@ -158,5 +163,6 @@ public class WhatWebKud implements Initializable {
     public void desaktibatuWhatWeb() {
         txtURL.setDisable(true);
         btnScan.setDisable(true);
+        txtLog.setDisable(true);
     }
 }

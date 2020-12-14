@@ -66,10 +66,12 @@ public class ServerKud implements Initializable {
     }
 
     public void aktibatuServer() {
-        btnEguneratu.setDisable(false);
+        btnEguneratu.setDisable(true);
+        listHistoriala.setDisable(false);
     }
 
     public void desaktibatuServer() {
         btnEguneratu.setDisable(true);
+        listHistoriala.setDisable(true);
     }
 }

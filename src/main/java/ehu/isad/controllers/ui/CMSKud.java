@@ -279,6 +279,7 @@ public class CMSKud implements Initializable {
                     sortuFiltroa();
                     aktibatuFuntzionalitateak();
                     garbituFiltroak();
+                    txtUrl.requestFocus();
                 } catch (Exception err) {
                     err.printStackTrace();
                 }

@@ -49,14 +49,11 @@
             </HBox>
             <TableView fx:id="tbCMS" onMouseClicked="#onClickTaula" prefHeight="360.0" prefWidth="723.0" style="-fx-border-color: #2A1C42;" stylesheets="@css/WhatWeb.css" GridPane.rowIndex="1">
               <columns>
-                <TableColumn fx:id="url" prefWidth="75.0" text="URL" />
-                <TableColumn fx:id="cms" prefWidth="75.0" text="CMS" />
-                  <TableColumn fx:id="version" prefWidth="75.0" text="Version" />
-                  <TableColumn fx:id="lastUpdated" prefWidth="84.7999267578125" text="Last Updated" />
+                <TableColumn fx:id="url" prefWidth="286.0" text="URL" />
+                <TableColumn fx:id="cms" minWidth="1.0" prefWidth="134.0" text="CMS" />
+                  <TableColumn fx:id="version" prefWidth="124.0" text="Version" />
+                  <TableColumn fx:id="lastUpdated" prefWidth="177.0" text="Last Updated" />
               </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
             </TableView>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
