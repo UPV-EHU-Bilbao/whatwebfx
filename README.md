@@ -14,4 +14,6 @@ Erabili ditugun baliabideen artean, hurrengokoak dira esanguratsuenak: <br />
 
    Aurten, WhatWebFX deituriko proiektua izan da zeregina. WhatWeb aplikazioak webguneek atzetik erabiltzen dituzten
 web teknologiak identifikatzen ditu eta gure lana tresna hau erabiltzeko interfaze grafiko bat garatzea izan da. <br />
-Proiektu hau jorratzeko izan dugun denbora tartea gutxi gora behera 28 egunekoa izan da azaroaren 19-tik abenduaren 14-ra (hasierako planifikazioa iraila-ren amaieran egin genuen arren).<br /><br />## Dokumentazio osoa:<br />https://github.com/UPV-EHU-Bilbao/whatwebfx/blob/master/WhatwebFX_Dokumentazioa.pdf 
+Proiektu hau jorratzeko izan dugun denbora tartea gutxi gora behera 28 egunekoa izan da azaroaren 19-tik abenduaren 14-ra (hasierako planifikazioa iraila-ren amaieran egin genuen arren).
+
+## Dokumentazio osoa:<br />https://github.com/UPV-EHU-Bilbao/whatwebfx/blob/master/WhatwebFX_Dokumentazioa.pdf 
