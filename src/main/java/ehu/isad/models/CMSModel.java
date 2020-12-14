@@ -1,7 +1,5 @@
 package ehu.isad.models;
 
-import javafx.scene.control.Button;
-
 public class CMSModel {
 
     private final String url;
