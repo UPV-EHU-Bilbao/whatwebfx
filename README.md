@@ -17,4 +17,7 @@ web teknologiak identifikatzen ditu eta gure lana tresna hau erabiltzeko interfa
 Proiektu hau jorratzeko izan dugun denbora tartea gutxi gora behera 28 egunekoa izan da azaroaren 19-tik abenduaren 14-ra (hasierako planifikazioa iraila-ren amaieran egin genuen arren).
 
 ### Dokumentazio osoa:
-https://github.com/UPV-EHU-Bilbao/whatwebfx/blob/master/WhatwebFX_Dokumentazioa.pdf 
+https://github.com/UPV-EHU-Bilbao/whatwebfx/blob/master/WhatwebFX_Dokumentazioa.pdf
+
+### Aurkezpena:
+https://github.com/UPV-EHU-Bilbao/whatwebfx/blob/master/WhatwebFX_Aurkezpena.pdf
