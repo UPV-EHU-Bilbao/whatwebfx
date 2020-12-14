@@ -39,7 +39,7 @@ public class ServerKud implements Initializable {
 
     @FXML
     void onClickListHistoriala(MouseEvent event) {
-        if (listHistoriala.getSelectionModel().getSelectedItem() != null) {
+        if (!mainApp.prozesuAktibo && listHistoriala.getSelectionModel().getSelectedItem() != null) {
             btnEguneratu.setDisable(false);
         }
     }
@@ -67,11 +67,9 @@ public class ServerKud implements Initializable {
 
     public void aktibatuServer() {
         btnEguneratu.setDisable(true);
-        listHistoriala.setDisable(false);
     }
 
     public void desaktibatuServer() {
         btnEguneratu.setDisable(true);
-        listHistoriala.setDisable(true);
     }
 }

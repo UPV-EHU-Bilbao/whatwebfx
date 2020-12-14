@@ -151,7 +151,7 @@ public class CMSKud implements Initializable {
             final TableRow<CMSModel> errenkada = new TableRow<>();
             errenkada.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
                 final int index = errenkada.getIndex();
-                if (index >= 0 && index < tbCMS.getItems().size() && tbCMS.getSelectionModel().isSelected(index)  ) {
+                if (index < tbCMS.getItems().size() && tbCMS.getSelectionModel().isSelected(index)  ) {
                     tbCMS.getSelectionModel().clearSelection();
                     btnEzabatu.setDisable(true);
                     btnEguneratu.setDisable(true);
@@ -208,8 +208,10 @@ public class CMSKud implements Initializable {
         cmsZerrObs = FXCollections.observableArrayList(cmsZerr);
         tbCMS.setItems(cmsZerrObs);
         tbCMS.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            btnEzabatu.setDisable(false);
-            btnEguneratu.setDisable(false);
+            if (!mainApp.prozesuAktibo) {
+                btnEzabatu.setDisable(false);
+                btnEguneratu.setDisable(false);
+            }
         });
     }
 
@@ -280,6 +282,7 @@ public class CMSKud implements Initializable {
                     sortuFiltroa();
                     aktibatuFuntzionalitateak();
                     garbituFiltroak();
+                    mainApp.prozesuAktibo = false;
                     txtUrl.requestFocus();
                 } catch (Exception err) {
                     err.printStackTrace();
@@ -322,6 +325,7 @@ public class CMSKud implements Initializable {
                     sortuFiltroa();
                     aktibatuFuntzionalitateak();
                     garbituFiltroak();
+                    mainApp.prozesuAktibo = false;
                 } catch (Exception err) {
                     err.printStackTrace();
                 }
@@ -349,6 +353,7 @@ public class CMSKud implements Initializable {
 
     private void allProcesses() {
         try {
+            mainApp.prozesuAktibo = true;
             Process p;
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 p = Runtime.getRuntime().exec("wsl " + whatwebpath + "whatweb --log-sql=scanInfo.sql " + scanUrl);
@@ -373,7 +378,6 @@ public class CMSKud implements Initializable {
         txtUrl.setEditable(true);
         cmbCMS.setDisable(false);
         btnAddURL.setDisable(false);
-        tbCMS.setDisable(false);
     }
 
     private void desaktibatuFuntzionalitateak() {
@@ -388,6 +392,5 @@ public class CMSKud implements Initializable {
         btnAddURL.setDisable(true);
         btnEzabatu.setDisable(true);
         btnEguneratu.setDisable(true);
-        tbCMS.setDisable(true);
     }
 }

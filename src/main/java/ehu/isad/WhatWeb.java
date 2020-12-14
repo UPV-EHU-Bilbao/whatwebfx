@@ -36,6 +36,8 @@ public class WhatWeb extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    public boolean prozesuAktibo = false;
+
     public static void main(String[] args) {
         launch();
     }

@@ -96,6 +96,8 @@ public class WhatWebKud implements Initializable {
                 aktibatuFuntzionalitateak();
                 txtURL.setEditable(true);
                 txtLog.setDisable(txtLog.getText().equals(""));
+                mainApp.prozesuAktibo = false;
+                txtLog.setDisable(txtLog.getText().equals(""));
                 txtURL.requestFocus();
             });
         });
@@ -105,6 +107,8 @@ public class WhatWebKud implements Initializable {
     public List<String> allProcesses() {
         List<String> processes = new LinkedList<>();
         try {
+            mainApp.prozesuAktibo = true;
+            txtLog.setDisable(true);
             String line;
             Process p = null;
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
@@ -151,7 +155,6 @@ public class WhatWebKud implements Initializable {
         txtURL.setDisable(false);
         txtURL.setEditable(true);
         btnScan.setDisable(txtURL.getText().equals(""));
-        txtLog.setDisable(txtLog.getText().equals(""));
     }
 
     private void desaktibatuFuntzionalitateak() {
@@ -163,6 +166,5 @@ public class WhatWebKud implements Initializable {
     public void desaktibatuWhatWeb() {
         txtURL.setDisable(true);
         btnScan.setDisable(true);
-        txtLog.setDisable(true);
     }
 }
